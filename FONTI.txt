@@ -1,0 +1,7 @@
+Per fare il download di un file tramite servlet
+
+http://www.codejava.net/java-ee/servlet/java-servlet-download-file-example
+
+Per linkare JDBC e MySQL
+
+http://www.vogella.com/articles/MySQLJava/article.html

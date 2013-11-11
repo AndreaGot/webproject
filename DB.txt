@@ -1,0 +1,18 @@
+Utente
+IDUtente, username, password, nomeCompleto
+
+Gruppo
+IDGruppo, nome, IDProprietario, DataCreazione
+
+Gruppo_Utente
+IDUtente, IDGruppo, ruolo
+
+Post
+IDPost, IDGruppo, contenuto, IDAutore
+
+Post_File
+IDFile, IDGruppo, File, IDAutore
+
+Inviti
+IDGruppo, IDUtente, Accettato
+
