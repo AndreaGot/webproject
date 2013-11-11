@@ -2,10 +2,51 @@ QUERIES
 
 Login
 
+SELECT *
+FROM Utente
+WHERE username = ? AND password = ?;
+
+Salvare in sessione (o cookie) sia il nomeCompleto che IDUtente (servirà per i gruppi)
+--------------------------------------------------------------------------
 
 Gruppi
 
+SELECT G.nome 
+FROM (Gruppo G INNER JOIN Gruppo_Utente GU ON G.IDGruppo=GU.IDGruppo)
+WHERE GU.IDUtente = ?;
+
+SELECT P.data
+FROM Post P INNER JOIN Gruppo G ON P.IDGruppo=G.IDGruppo
+WHERE G.nome=?
+ORDER BY data DESC;
+
+
 
 Post
+
+SELECT *
+FROM Post P INNER JOIN Utente U ON P.IDAutore = U.IDUtente
+WHERE IDGruppo = ?
+ORDER BY data DESC;
+
+Inviti
+
+SELECT U.nomeCompleto, G.nome
+FROM (Inviti I INNER JOIN Gruppo G ON I.IDGruppo=G.IDGruppo)INNER JOIN Utente U ON G.IDProprietario=U.IDUtente)
+WHERE IDUtente =? AND Accettato = NULL
+
+Se si accetta
+
+INSERT INTO Gruppo_Utente VALUES (?,?,"User")
+
+UPDATE Invito
+SET Accettato = true
+WHERE IDUtente = ? AND IDGruppo = ?
+
+Se si rifiuta
+
+UPDATE Invito
+SET Accettato = false
+WHERE IDUtente = ? AND IDGruppo = ?
 
 

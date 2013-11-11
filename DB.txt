@@ -8,7 +8,7 @@ Gruppo_Utente
 IDUtente, IDGruppo, ruolo
 
 Post
-IDPost, IDGruppo, contenuto, IDAutore
+IDPost, IDGruppo, contenuto, IDAutore, data
 
 Post_File
 IDFile, IDGruppo, File, IDAutore
