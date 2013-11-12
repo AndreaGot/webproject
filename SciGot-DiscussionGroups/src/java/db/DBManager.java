@@ -44,7 +44,7 @@ public class DBManager implements Serializable {
             // This will load the MySQL driver, each DB has its own driver
             // Setup the connection with the DB
             connect = DriverManager.getConnection(url, userpass, userpass);
-
+            System.out.println("#################################################################################################################################################################################################################################################################################################################################################");
             // Statements allow to issue SQL queries to the database
 
 

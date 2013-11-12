@@ -9,6 +9,8 @@ import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +25,12 @@ public class LoginServlet extends HttpServlet {
 
     private DBManager manager;
 
-    
     @Override
     public void init() throws ServletException {
-    // inizializza il DBManager dagli attributi di Application
+        // inizializza il DBManager dagli attributi di Application
         this.manager = (DBManager)super.getServletContext().getAttribute("dbmanager");
     }
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -88,6 +90,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         // controllo nel DB se esiste un utente con lo stesso username + password
