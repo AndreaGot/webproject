@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="All Faces Configurations" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="forum/delete_group.jsp" x="486" y="73" zoom="true"/>
+        <Node id="forum/add_gruppo.jsp" x="921" y="9" zoom="true"/>
+        <Node id="forum/add_file.jsp" x="30" y="563" zoom="true"/>
+        <Node id="loginFailed.jsp" x="28" y="34" zoom="true"/>
+        <Node id="forum/invite_user.jsp" x="112" y="672" zoom="true"/>
+        <Node id="forum/show_posts.jsp" x="391" y="444" zoom="true"/>
+        <Node id="welcomeJSF.jsp" x="350" y="-1" zoom="true"/>
+        <Node id="delete_group.jsp" x="623" y="172" zoom="true"/>
+        <Node id="forum/add_group.jsp" x="951" y="622" zoom="true"/>
+        <Node id="register.jsp" x="10" y="276" zoom="true"/>
+        <Node id="forum/edit_group.jsp" x="352" y="236" zoom="true"/>
+        <Node id="forum/add_post.jsp" x="451" y="656" zoom="true"/>
+        <Node id="forum/main.jsp" x="977" y="419" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="forum/delete_group.jsp" x="486" y="73" zoom="true"/>
+        <Node id="forum/add_gruppo.jsp" x="921" y="9" zoom="true"/>
+        <Node id="forum/add_file.jsp" x="30" y="563" zoom="true"/>
+        <Node id="loginFailed.jsp" x="28" y="34" zoom="true"/>
+        <Node id="forum/invite_user.jsp" x="112" y="672" zoom="true"/>
+        <Node id="forum/show_posts.jsp" x="391" y="444" zoom="true"/>
+        <Node id="welcomeJSF.jsp" x="350" y="-1" zoom="true"/>
+        <Node id="delete_group.jsp" x="623" y="172" zoom="false"/>
+        <Node id="register.jsp" x="10" y="276" zoom="true"/>
+        <Node id="forum/add_group.jsp" x="951" y="622" zoom="true"/>
+        <Node id="forum/edit_group.jsp" x="352" y="236" zoom="true"/>
+        <Node id="forum/add_post.jsp" x="451" y="656" zoom="false"/>
+        <Node id="forum/main.jsp" x="977" y="419" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations">
+        <Node id="forum/delete_group.jsp" x="486" y="73" zoom="true"/>
+        <Node id="forum/add_gruppo.jsp" x="921" y="9" zoom="true"/>
+        <Node id="forum/add_file.jsp" x="30" y="563" zoom="true"/>
+        <Node id="loginFailed.jsp" x="28" y="34" zoom="true"/>
+        <Node id="forum/invite_user.jsp" x="112" y="672" zoom="true"/>
+        <Node id="forum/show_posts.jsp" x="391" y="444" zoom="true"/>
+        <Node id="welcomeJSF.jsp" x="350" y="-1" zoom="true"/>
+        <Node id="delete_group.jsp" x="623" y="172" zoom="true"/>
+        <Node id="register.jsp" x="10" y="276" zoom="true"/>
+        <Node id="forum/add_group.jsp" x="951" y="622" zoom="true"/>
+        <Node id="forum/edit_group.jsp" x="352" y="236" zoom="true"/>
+        <Node id="forum/add_post.jsp" x="451" y="656" zoom="true"/>
+        <Node id="forum/main.jsp" x="977" y="419" zoom="true"/>
+    </Scope>
+</Scene>
