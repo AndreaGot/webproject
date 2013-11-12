@@ -8,6 +8,14 @@
         <servlet-name>DBManager</servlet-name>
         <servlet-class>db.DBManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>User</servlet-name>
+        <servlet-class>db.User</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WebappContextListener</servlet-name>
+        <servlet-class>listeners.WebappContextListener</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>DBManager</servlet-name>
         <url-pattern>/DBManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/User</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WebappContextListener</servlet-name>
+        <url-pattern>/WebappContextListener</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
