@@ -109,6 +109,7 @@ public class DBManager implements Serializable {
                     User user = new User();
                     user.setUserName(username);
                     user.setName(rs.getString("Nome_completo"));
+                    user.setId(rs.getString("Id_utente"));
                     return user;
                 } else {
                     return null;
@@ -125,14 +126,11 @@ public class DBManager implements Serializable {
         }
 
     }
+
+    
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Visualizza i gruppi a cui un utente appartiene..
+     * 
+     * @param Id_utente l'id dell'utente
      */
 }

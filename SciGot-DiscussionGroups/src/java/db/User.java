@@ -21,6 +21,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     public String nome_completo;
+    public String id;
 
     public String getUserName() {
         return username;
@@ -44,5 +45,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+        public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

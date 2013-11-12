@@ -4,32 +4,18 @@
  */
 package servlet;
 
-import db.DBManager;
-import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ANDre1
  */
-public class LoginServlet extends HttpServlet {
-
-    private DBManager manager;
-
-    @Override
-    public void init() throws ServletException {
-        // inizializza il DBManager dagli attributi di Application
-        this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
-    }
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -43,7 +29,6 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -51,22 +36,13 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet LogoutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ciao, " + session.getAttribute("user") + "il tuo id è " + session.getAttribute("id") + "</h1>");
-            out.println("<form>");
-            out.println("<input type='submit' value='I tuoi gruppi'>");
-            out.println("</form>");
-            out.println("<form>");
-            out.println("<input type='submit' value='Crea un gruppo'>");
-            out.println("</form>");
-            out.println("<form>");
-            out.println("<input type='submit' value='I tuoi inviti'>");
-            out.println("</form>");
+            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {
+        } finally {            
             out.close();
         }
     }
@@ -99,33 +75,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        // controllo nel DB se esiste un utente con lo stesso username + password
-        User user;
-
-        try {
-            user = manager.authenticate(username, password);
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
-        }
-
-        if (user == null) {
-        } else {
-
-            // imposto l'utente connesso come attributo di sessione
-            // per adesso e' solo un oggetto String con il nome dell'utente, ma posso metterci anche un oggetto User
-            // con, ad esempio, il timestamp di login
-
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", user.nome_completo);
-            session.setAttribute("id", user.id);
-            
-            // mando un redirect alla servlet che carica i prodotti
-            processRequest(request, response);
-
-        }
+        processRequest(request, response);
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 }
