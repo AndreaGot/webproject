@@ -22,7 +22,17 @@
             
         </form>
         
-        <h1><%= request.getAttribute("message")%></h1>
+         <% 
+            if (request.getAttribute("message")== null){
+                out.println(" ");
+            } 
+            else {
+            out.println(request.getAttribute("message"));
+            
+            }
+               
+         %> 
+       
         
         
         
