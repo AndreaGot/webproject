@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -75,14 +77,28 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession(false);
+        
+        if(session != null){
+            session.removeAttribute("user");
+            session.invalidate();
+            
+        }
+        
+        request.setAttribute("message","Logout effettuato con successo!");
+        //rimando al login
+        
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        rd.forward(request,response);
+        
+        
+        
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

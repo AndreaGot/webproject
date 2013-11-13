@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ciao, " + session.getAttribute("user") + "il tuo id è " + session.getAttribute("id") + "</h1>");
+            out.println("<h1>Ciao, " + session.getAttribute("user") + " il tuo id è " + session.getAttribute("id") + "</h1>");
             out.println("<form>");
             out.println("<input type='submit' value='I tuoi gruppi'>");
             out.println("</form>");

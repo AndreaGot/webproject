@@ -31,7 +31,7 @@ public class DBManager implements Serializable {
         //String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 
 
-        String url = "jdbc:mysql://localhost:8889/scigot";
+        String url = "jdbc:mysql://localhost:3306/scigot";
         String userpass = "root";
         try {
             System.out.println("Loading driver...");

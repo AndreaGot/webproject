@@ -19,7 +19,14 @@
             <input type="text" name="username" value="user" />
             <input type="text" name="password" value="pass" />
             <input type="submit" value="ok" name="ok" />
-
+            
         </form>
+        
+        <h1><%= request.getAttribute("message")%></h1>
+        
+        
+        
     </body>
+    
+    
 </html>
