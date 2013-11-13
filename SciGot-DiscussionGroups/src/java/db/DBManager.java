@@ -13,7 +13,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -98,13 +102,11 @@ public class DBManager implements Serializable {
         stm = connect.prepareStatement("SELECT * FROM scigot.utente WHERE Username = ? AND password = ?");
 
         try {
-
             stm.setString(1, username);
             stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
 
             try {
-
                 if (rs.next()) {
                     User user = new User();
                     user.setUserName(username);
@@ -114,7 +116,6 @@ public class DBManager implements Serializable {
                 } else {
                     return null;
                 }
-
             } finally {
                 // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
                 rs.close();
@@ -127,10 +128,38 @@ public class DBManager implements Serializable {
 
     }
 
-    
     /**
      * Visualizza i gruppi a cui un utente appartiene..
-     * 
+     *
      * @param Id_utente l'id dell'utente
      */
+    public List<Group> trovaGruppo(HttpServletRequest req) throws SQLException {
+
+        HttpSession session = req.getSession(true);
+        stm = connect.prepareStatement("SELECT * FROM (scigot.gruppo G INNER JOIN scigot.gruppo_utente GU ON G.Id_gruppo=GU.Id_gruppo) WHERE GU.Id_utente = ?");
+        List<Group> groups = new ArrayList<Group>();
+        try {
+            stm.setString(1, (session.getAttribute("userid").toString()));
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    Group g = new Group();
+                    g.setName(rs.getString("Nome"));
+                    g.setProprietario(rs.getString("Id_proprietario"));
+                    g.setId(rs.getString("Id_gruppo"));
+                    groups.add(g);
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return groups;
+    }
 }

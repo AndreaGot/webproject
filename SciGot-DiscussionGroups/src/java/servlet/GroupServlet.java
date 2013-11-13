@@ -2,30 +2,30 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-//ciao sono bomba no 2,3 3
 package servlet;
-
+import db.Group;
 import db.DBManager;
-import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 /**
  *
  * @author ANDre1
  */
-public class LoginServlet extends HttpServlet {
+public class GroupServlet extends HttpServlet {
 
     private DBManager manager;
+    List<Group> groups;
 
     @Override
     public void init() throws ServletException {
@@ -45,7 +45,18 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+        
+        
+        try {
+            groups = manager.trovaGruppo(request);
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -53,22 +64,13 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet GroupServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ciao, " + session.getAttribute("user") + " il tuo id è " + session.getAttribute("userid") + "</h1>");
-            out.println("<form action='GroupServlet'>");
-            out.println("<input type='submit' value='I tuoi gruppi'>");
-            out.println("</form>");
-            out.println("<form>");
-            out.println("<input type='submit' value='Crea un gruppo'>");
-            out.println("</form>");
-            out.println("<form>");
-            out.println("<input type='submit' value='I tuoi inviti'>");
-            out.println("</form>");
-            out.println("<form action='LogoutServlet' method='POST'>");
-            out.println("<input type='submit' value='Logout'>");
-            out.println("</form>");
+            for (Group g : groups) {
+			out.println("<h1>"+g.nome+"</h1>");
+		}
+            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -104,33 +106,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        // controllo nel DB se esiste un utente con lo stesso username + password
-        User user;
-
-        try {
-            user = manager.authenticate(username, password);
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
-        }
-
-        if (user == null) {
-        } else {
-
-            // imposto l'utente connesso come attributo di sessione
-            // per adesso e' solo un oggetto String con il nome dell'utente, ma posso metterci anche un oggetto User
-            // con, ad esempio, il timestamp di login
-
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", user.nome_completo);
-            session.setAttribute("userid", user.id);
-            
-            // mando un redirect alla servlet che carica i prodotti
-            processRequest(request, response);
-
-        }
+        processRequest(request, response);
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 }
