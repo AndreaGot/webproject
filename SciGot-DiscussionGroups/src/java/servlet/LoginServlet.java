@@ -66,6 +66,9 @@ public class LoginServlet extends HttpServlet {
             out.println("<form>");
             out.println("<input type='submit' value='I tuoi inviti'>");
             out.println("</form>");
+            out.println("<form action='LogoutServlet' method='POST'>");
+            out.println("<input type='submit' value='Logout'>");
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         } finally {
