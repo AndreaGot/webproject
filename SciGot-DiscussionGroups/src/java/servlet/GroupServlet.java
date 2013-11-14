@@ -68,7 +68,7 @@ public class GroupServlet extends HttpServlet {
                         + "<input type='text' value='" + g.nome + "'>"
                         + "<input type='submit' value='Vedi Gruppo'>"
                         + "</form>");
-                if (true) {
+                if ((request.getParameter("userid").toString()).equals((g.proprietario).toString())) {
                     out.println("<form method='POST' >"
                             + "<input type='text' value='" + g.nome + "'>"
                             + "<input type='submit' value='Amministra'>"
