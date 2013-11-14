@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 /**
@@ -46,7 +47,7 @@ public class GroupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+         HttpSession session = request.getSession(true);
         try {
             groups = manager.trovaGruppo(request);
         } catch (SQLException ex) {
@@ -69,7 +70,22 @@ public class GroupServlet extends HttpServlet {
             out.println("<body>");
             for (Group g : groups) {
 			out.println("<h1>"+g.nome+"</h1>");
-		}
+                        out.println("<form action='' method='POST' >"+
+                                "<input type='text' value='"+g.nome+"'>"+
+                                "<input type='submit' value='Vedi Gruppo'>"+
+                                
+                                "</form>");
+                        if (g.proprietario == session.getAttribute("userid"))
+                        {
+                        out.println("<form action='' method='POST' >"+
+                                "<input type='text' value='"+g.nome+"'>"+
+                                "<input type='submit' value='Amministra'>"+
+                                
+                                "</form>");
+                            
+                        
+                        }
+            }
             out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");

@@ -131,7 +131,7 @@ public class DBManager implements Serializable {
     /**
      * Visualizza i gruppi a cui un utente appartiene..
      *
-     * @param Id_utente l'id dell'utente
+     * @param req l'id dell'utente
      */
     public List<Group> trovaGruppo(HttpServletRequest req) throws SQLException {
 

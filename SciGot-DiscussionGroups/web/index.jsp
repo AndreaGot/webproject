@@ -22,6 +22,8 @@
             
         </form>
         
+        
+        
          <% 
             if (request.getAttribute("message")== null){
                 out.println(" ");
@@ -32,9 +34,10 @@
             }
                
          %> 
-       
+         
         
-        
+         
+         
         
     </body>
     

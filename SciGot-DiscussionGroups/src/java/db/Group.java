@@ -35,6 +35,6 @@ public class Group {
     }
 
     public void setProprietario(String id) {
-        this.proprietario = proprietario;
+        this.proprietario = id;
     }
 }
