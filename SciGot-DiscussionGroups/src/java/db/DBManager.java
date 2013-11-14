@@ -4,8 +4,7 @@
  */
 package db;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -161,5 +160,37 @@ public class DBManager implements Serializable {
             stm.close();
         }
         return groups;
+    }
+    
+    public List<Invito> trovaInvito(HttpServletRequest req) throws SQLException { 
+    
+    HttpSession session = req.getSession(true);
+        stm = connect.prepareStatement("SELECT * FROM ((scigot.inviti I INNER JOIN scigot.gruppo G on I.Id_gruppo=G.Id_gruppo)INNER JOIN scigot.utente U ON G.Id_proprietario = U.Id_utente) WHERE I.Id_utente = ?");
+        List<Invito> inviti = new ArrayList<Invito>();
+        try {
+            stm.setString(1, (session.getAttribute("userid").toString()));
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    Invito i = new Invito();
+                    i.setNomeGruppo(rs.getString("Nome"));
+                    i.setOwner(rs.getString("Nome_completo"));
+                    i.setAccettato(rs.getString("Accettato"));
+                    inviti.add(i);
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return inviti;
+    
+    
     }
 }

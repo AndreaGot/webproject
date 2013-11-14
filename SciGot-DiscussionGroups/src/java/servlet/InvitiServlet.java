@@ -4,28 +4,29 @@
  */
 package servlet;
 
-import db.Group;
 import db.DBManager;
+import db.Group;
+import db.Invito;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  *
  * @author ANDre1
  */
-public class GroupServlet extends HttpServlet {
+public class InvitiServlet extends HttpServlet {
+
     private String userid;
     private DBManager manager;
-    List<Group> groups;
+    List<Invito> inviti;
 
     @Override
     public void init() throws ServletException {
@@ -45,13 +46,9 @@ public class GroupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        System.out.println(request.getParameter("userid"));
-        
-        
+
         try {
-            groups = manager.trovaGruppo(request);
+            inviti = manager.trovaInvito(request);
         } catch (SQLException ex) {
             Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,24 +60,20 @@ public class GroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GroupServlet</title>");
+            out.println("<title>Servlet InvitiServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            for (Group g : groups) {
-                out.println("<h1>" + g.nome + "</h1>");
-                out.println("<form action='' method='POST' >"
-                        + "<input type='text' value='" + g.nome + "'>"
-                        + "<input type='submit' value='Vedi Gruppo'>"
-                        + "</form>");
-                if ((request.getParameter("userid").toString()).equals(g.proprietario.toString())==true) {
-                    out.println("<form method='POST' >"
-                            + "<input type='text' value='" + g.nome + "'>"
-                            + "<input type='submit' value='Amministra'>"
-                            + "</form>");
+            
+            if (inviti == null) {
+                out.println("<h1> nessun invito! </h1>");
+            } else {
+                for (Invito i : inviti) {
+                    out.println("<h1>" + i.owner + " " + i.nomeGruppo + "</h1>");
                 }
-                out.println("ciao");
             }
-            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+            
+            out.println("ciao");
+            out.println("<h1>Servlet InvitiServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {

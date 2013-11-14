@@ -31,8 +31,9 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -54,13 +55,15 @@ public class LoginServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Ciao, " + session.getAttribute("user") + " il tuo id è " + session.getAttribute("userid") + "</h1>");
             out.println("<form action='GroupServlet' method = 'POST'>");
-            out.println("<input type='text' name='userid' value='"+ session.getAttribute("userid")+"'>");
+            out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='I tuoi gruppi'>");
             out.println("</form>");
             out.println("<form>");
+            out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='Crea un gruppo'>");
             out.println("</form>");
-            out.println("<form>");
+            out.println("<form action='InvitiServlet'>");
+            out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='I tuoi inviti'>");
             out.println("</form>");
             out.println("<form action='LogoutServlet' method='POST'>");
@@ -75,7 +78,8 @@ public class LoginServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -89,7 +93,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
