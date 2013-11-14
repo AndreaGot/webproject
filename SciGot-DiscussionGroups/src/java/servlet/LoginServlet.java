@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //ciao sono bomba no 2,3 3
 package servlet;
 
@@ -34,9 +33,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -45,7 +43,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -58,6 +56,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Ciao, " + session.getAttribute("user") + " il tuo id è " + session.getAttribute("userid") + "</h1>");
             out.println("<form action='GroupServlet'>");
+            out.println("<input type='hidden' name='userid' value='"+ session.getAttribute("userid")+"'>");
             out.println("<input type='submit' value='I tuoi gruppi'>");
             out.println("</form>");
             out.println("<form>");
@@ -78,8 +77,7 @@ public class LoginServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -93,8 +91,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -104,7 +101,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -123,11 +119,10 @@ public class LoginServlet extends HttpServlet {
             // imposto l'utente connesso come attributo di sessione
             // per adesso e' solo un oggetto String con il nome dell'utente, ma posso metterci anche un oggetto User
             // con, ad esempio, il timestamp di login
-
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user.nome_completo);
             session.setAttribute("userid", user.id);
-            
+
             // mando un redirect alla servlet che carica i prodotti
             processRequest(request, response);
 
