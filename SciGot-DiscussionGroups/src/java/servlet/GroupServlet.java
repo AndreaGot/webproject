@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @author ANDre1
  */
 public class GroupServlet extends HttpServlet {
-
+    private String userid;
     private DBManager manager;
     List<Group> groups;
 
@@ -45,7 +45,11 @@ public class GroupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        
+        System.out.println(request.getParameter("userid"));
+        
+        
         try {
             groups = manager.trovaGruppo(request);
         } catch (SQLException ex) {
@@ -68,13 +72,13 @@ public class GroupServlet extends HttpServlet {
                         + "<input type='text' value='" + g.nome + "'>"
                         + "<input type='submit' value='Vedi Gruppo'>"
                         + "</form>");
-                if ((request.getParameter("userid").toString()).equals((g.proprietario).toString())) {
+                if ((request.getParameter("userid").toString()).equals(g.proprietario.toString())==true) {
                     out.println("<form method='POST' >"
                             + "<input type='text' value='" + g.nome + "'>"
                             + "<input type='submit' value='Amministra'>"
                             + "</form>");
                 }
-
+                out.println("ciao");
             }
             out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
@@ -112,6 +116,7 @@ public class GroupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        userid = request.getParameter("userid");
         processRequest(request, response);
     }
 
