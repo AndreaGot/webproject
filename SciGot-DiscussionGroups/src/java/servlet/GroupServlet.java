@@ -34,8 +34,9 @@ public class GroupServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -45,7 +46,6 @@ public class GroupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-      
         try {
             groups = manager.trovaGruppo(request);
         } catch (SQLException ex) {
@@ -68,13 +68,13 @@ public class GroupServlet extends HttpServlet {
                         + "<input type='text' value='" + g.nome + "'>"
                         + "<input type='submit' value='Vedi Gruppo'>"
                         + "</form>");
-                if (request.getAttribute("userid") == g.proprietario) {
-                    out.println("<form action='' method='POST' >"
+                if (true) {
+                    out.println("<form method='POST' >"
                             + "<input type='text' value='" + g.nome + "'>"
                             + "<input type='submit' value='Amministra'>"
                             + "</form>");
-                } else {
                 }
+
             }
             out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
@@ -86,7 +86,8 @@ public class GroupServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -100,7 +101,8 @@ public class GroupServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
