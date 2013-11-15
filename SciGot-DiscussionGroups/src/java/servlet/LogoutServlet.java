@@ -6,16 +6,13 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.http.Cookie;
+
 
 /**
  *
@@ -81,13 +78,7 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        ;
-
-        Cookie cookie = new Cookie("date_cookie" + session.getAttribute("userid"), (dateFormat.format(date)));
-        cookie.setMaxAge(604800);
-        response.addCookie(cookie);
+        
 
         if (session != null) {
             session.removeAttribute("user");

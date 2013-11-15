@@ -10,6 +10,9 @@ import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -43,13 +46,21 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Cookie[] cookies = request.getCookies();
-        Cookie cookie;
-        int cont = 0;
-
         HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd 'alle ore' HH:mm:ss");
+        Date date = new Date();
+        
+
+        Cookie cookie = new Cookie("date_cookie" + session.getAttribute("userid"), (dateFormat.format(date)));
+        cookie.setMaxAge(604800);
+        response.addCookie(cookie);
+
+        Cookie[] cookies = request.getCookies();
+
+        int cont = 0;
 
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -64,7 +75,7 @@ public class LoginServlet extends HttpServlet {
             for (int i = 0; i < cookies.length; i++) {
                 cookie = cookies[i];
                 if (("date_cookie" + session.getAttribute("userid")).equals(cookie.getName())) {
-                    out.println("Il tuo ultimo accesso risale alla data: " + cookie.getValue());
+                    out.println("Il tuo ultimo accesso risale alla data " + cookie.getValue());
                     cont = 0;
                     break;
                 } else {
