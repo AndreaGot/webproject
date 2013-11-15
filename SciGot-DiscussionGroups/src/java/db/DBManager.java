@@ -98,7 +98,7 @@ public class DBManager implements Serializable {
         // usare SEMPRE i PreparedStatement, anche per query banali. 
         // *** MAI E POI MAI COSTRUIRE LE QUERY CONCATENANDO STRINGHE !!!! 
 
-        stm = connect.prepareStatement("SELECT * FROM scigot.utente WHERE Username = ? AND password = ?");
+        stm = connect.prepareStatement("SELECT * FROM scigot.utente WHERE Username = ? AND (BINARY password = ?)");
 
         try {
             stm.setString(1, username);

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -147,6 +148,13 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (user == null) {
+            
+        request.setAttribute("message", "Credenziali errate! per favore, riprova!");
+        //rimando al login
+
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        rd.forward(request, response);
+            
         } else {
 
             // imposto l'utente connesso come attributo di sessione
