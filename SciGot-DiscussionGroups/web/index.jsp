@@ -17,7 +17,7 @@
         <form name="form1" action="LoginServlet" method="POST">
 
             <input type="text" name="username"   value="user" />
-            <input type="text" name="password" autocomplete="off" value="pass" />
+            <input type="password" name="password" autocomplete="off" value="pass" />
             <input type="submit" value="ok" name="ok" />
             
         </form>
