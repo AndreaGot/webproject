@@ -86,17 +86,16 @@ public class LoginServlet extends HttpServlet {
             if (cont > 0) {
                 out.println("Questo è il tuo primo accesso!");
             }
+            
+          
 
             out.println("<form action='GroupServlet' method = 'POST'>");
-            out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='I tuoi gruppi'>");
             out.println("</form>");
             out.println("<form>");
-            out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='Crea un gruppo'>");
             out.println("</form>");
             out.println("<form action='InvitiServlet'>");
-            out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='I tuoi inviti'>");
             out.println("</form>");
             out.println("<form action='LogoutServlet' method='POST'>");

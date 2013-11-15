@@ -193,4 +193,39 @@ public class DBManager implements Serializable {
     
     
     }
+    
+    public List<Post> trovaPost(HttpServletRequest req) throws SQLException { 
+    
+   
+        stm = connect.prepareStatement("SELECT * FROM (scigot.post P INNER JOIN scigot.utente U on U.Id_utente=P.Id_autore) WHERE P.Id_gruppo = ? ORDER BY P.Id_post;");
+        List<Post> posts = new ArrayList<Post>();
+        try {
+            stm.setString(1, (req.getParameter("view").toString()));
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    Post p = new Post();
+                    p.setId(rs.getString("Id_post"));
+                    p.setAutore(rs.getString("Nome_completo"));
+                    p.setContenuto(rs.getString("Contenuto"));
+                    p.setData(rs.getDate("data"));
+                    posts.add(p);
+            
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return posts;
+    
+    
+    }
+    
 }

@@ -4,35 +4,36 @@
  */
 package servlet;
 
-import db.Group;
 import db.DBManager;
+import db.Group;
+import db.Post;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  *
  * @author ANDre1
  */
-public class GroupServlet extends HttpServlet {
+public class VediGruppoServlet extends HttpServlet {
+
     private String userid;
     private DBManager manager;
-    List<Group> groups;
-
+    List<Post> posts;
+    
     @Override
     public void init() throws ServletException {
         // inizializza il DBManager dagli attributi di Application
         this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
     }
-
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -46,16 +47,12 @@ public class GroupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
-        System.out.println(request.getParameter("userid"));
-        
-        
         try {
-            groups = manager.trovaGruppo(request);
+            posts = manager.trovaPost(request);
         } catch (SQLException ex) {
             Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -63,27 +60,18 @@ public class GroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GroupServlet</title>");
+            out.println("<title>Servlet VediGruppoServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            for (Group g : groups) {
-                out.println("<h1>" + g.nome + "</h1>");
-                out.println("<form action='VediGruppoServlet' method='POST' >"
-                        + "<input type='text' name='view' value='" + g.id + "'>"
-                        + "<input type='submit' value='Vedi Gruppo'>"
-                        + "</form>");
-                if ((request.getParameter("userid").toString()).equals(g.proprietario.toString())==true) {
-                    out.println("<form method='POST' >"
-                            + "<input type='text' name='admin' value='" + g.id + "'>"
-                            + "<input type='submit' value='Amministra'>"
-                            + "</form>");
-                }
-                out.println("ciao");
+            
+            for (Post p : posts) {
+                out.println("il " + p.data + ", " + p.Autore + " scrive: '" + p.contenuto + "' <br>" );
             }
-            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+            
+            out.println("<h1>Servlet VediGruppoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {
+        } finally {            
             out.close();
         }
     }
@@ -116,7 +104,6 @@ public class GroupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userid = request.getParameter("userid");
         processRequest(request, response);
     }
 
