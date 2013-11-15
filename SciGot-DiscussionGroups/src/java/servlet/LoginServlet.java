@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,9 +32,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -42,9 +42,15 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        Cookie[] cookies = request.getCookies();
+        Cookie cookie;
+        int cont = 0;
+
         HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -53,7 +59,23 @@ public class LoginServlet extends HttpServlet {
             out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ciao, " + session.getAttribute("user") + " il tuo id è " + session.getAttribute("userid") + "</h1>");
+            out.println("<h1>Ciao, " + session.getAttribute("user") + "." + "</h1>");
+
+            for (int i = 0; i < cookies.length; i++) {
+                cookie = cookies[i];
+                if (("date_cookie" + session.getAttribute("userid")).equals(cookie.getName())) {
+                    out.println("Il tuo ultimo accesso risale alla data: " + cookie.getValue());
+                    cont = 0;
+                    break;
+                } else {
+                    cont = cont + 1;
+                }
+            }
+
+            if (cont > 0) {
+                out.println("Questo è il tuo primo accesso!");
+            }
+
             out.println("<form action='GroupServlet' method = 'POST'>");
             out.println("<input type='text' name='userid' value='" + session.getAttribute("userid") + "'>");
             out.println("<input type='submit' value='I tuoi gruppi'>");
@@ -78,8 +100,7 @@ public class LoginServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -93,8 +114,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
