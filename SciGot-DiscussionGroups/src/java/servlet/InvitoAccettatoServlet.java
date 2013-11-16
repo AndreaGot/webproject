@@ -17,6 +17,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class InvitoAccettatoServlet extends HttpServlet {
 
+    
+    // Effettuare la chiamata a due query:
+            // Una si occupa del flag dell'invito come 1 (accettato)
+            // Una si occupa dell'inserimento dell'utente nella tabella gruppo_utente
+    // In seguito la richiesta non comparirà più perchè è stata presa una decisione, mentre apparirà il gruppo
+    
+    
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and

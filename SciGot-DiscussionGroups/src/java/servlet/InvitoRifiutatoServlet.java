@@ -17,6 +17,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class InvitoRifiutatoServlet extends HttpServlet {
 
+    
+    // Effettuare la chiamata a una query che setta semplicemente il flag della richiesta come 0, rifiutando la proposta.
+    // In seguito la richiesta non comparirà più perchè è stata presa una decisione
+    
+    
+    
+    
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
