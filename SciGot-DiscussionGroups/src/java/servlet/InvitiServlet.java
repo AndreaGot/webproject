@@ -35,8 +35,9 @@ public class InvitiServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -67,7 +68,15 @@ public class InvitiServlet extends HttpServlet {
                 out.println("<h1> nessun invito! </h1>");
             } else {
                 for (Invito i : inviti) {
-                    out.println("<h1>" + i.owner + " " + i.nomeGruppo + "</h1>");
+                    out.println("Un invito da " + i.owner + " per il gruppo " + i.nomeGruppo);
+                    out.println("<form>");
+                    out.println("<input type='hidden' value='" + i.idGruppo + "'>");
+                    out.println("<input type='submit' value='Accetta'>");
+                    out.println("<input type='submit' value='Rifiuta'>");
+                    out.println("</form>");
+                    out.println("<br>");
+                    out.println("<br>");
+                    
                 }
             }
 
@@ -82,7 +91,8 @@ public class InvitiServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -96,7 +106,8 @@ public class InvitiServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

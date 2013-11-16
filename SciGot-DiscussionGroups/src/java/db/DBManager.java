@@ -178,6 +178,7 @@ public class DBManager implements Serializable {
                     i.setNomeGruppo(rs.getString("Nome"));
                     i.setOwner(rs.getString("Nome_completo"));
                     i.setAccettato(rs.getString("Accettato"));
+                    i.setIdGruppo(rs.getString("Id_gruppo"));
                     inviti.add(i);
                 }
             } finally {
