@@ -60,8 +60,7 @@ public class LoginServlet extends HttpServlet {
         response.addCookie(cookie);
 
         Cookie[] cookies = request.getCookies();
-
-        int cont = 0;
+        Boolean trovato = false;
 
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -77,14 +76,12 @@ public class LoginServlet extends HttpServlet {
                 cookie = cookies[i];
                 if (("date_cookie" + session.getAttribute("userid")).equals(cookie.getName())) {
                     out.println("Il tuo ultimo accesso risale alla data " + cookie.getValue());
-                    cont = 0;
+                    trovato = true;
                     break;
-                } else {
-                    cont = cont + 1;
                 }
             }
 
-            if (cont > 0) {
+            if (!trovato) {
                 out.println("Questo è il tuo primo accesso!");
             }
             
