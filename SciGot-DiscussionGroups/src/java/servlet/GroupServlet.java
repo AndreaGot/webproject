@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -46,7 +47,7 @@ public class GroupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+        HttpSession session = request.getSession(false);
         System.out.println(request.getParameter("userid"));
         
         
@@ -72,7 +73,7 @@ public class GroupServlet extends HttpServlet {
                         + "<input type='text' name='view' value='" + g.id + "'>"
                         + "<input type='submit' value='Vedi Gruppo'>"
                         + "</form>");
-                if ((request.getParameter("userid").toString()).equals(g.proprietario.toString())==true) {
+                if ((session.getAttribute("userid").toString()).equals(g.proprietario.toString())==true) {
                     out.println("<form method='POST' >"
                             + "<input type='text' name='admin' value='" + g.id + "'>"
                             + "<input type='submit' value='Amministra'>"

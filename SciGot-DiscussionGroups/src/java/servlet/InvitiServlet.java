@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,6 +48,9 @@ public class InvitiServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession(false);
+
+
         try {
             inviti = manager.trovaInvito(request);
         } catch (SQLException ex) {
@@ -64,22 +68,22 @@ public class InvitiServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
-            if (inviti == null) {
+            if (inviti.size()<=0) {
                 out.println("<h1> nessun invito! </h1>");
             } else {
                 for (Invito i : inviti) {
                     out.println("Un invito da " + i.owner + " per il gruppo " + i.nomeGruppo);
-                    out.println("<form>");
-                    out.println("<input type='hidden' value='" + i.idGruppo + "'>");
-                    out.println("<input type='submit' value='Accetta'>");
-                    out.println("<input type='submit' value='Rifiuta'>");
+                    out.println("<form action='InvitoRispostaServlet' method='POST'>");
+                    out.println("<input type='hidden' name='idgruppo' value='" + i.idGruppo + "'>");
+                    out.println("<input type='submit' name='risposta' value='Accetta'>");
+                    out.println("<input type='submit' name='risposta' value='Rifiuta'>");
                     out.println("</form>");
                     out.println("<br>");
                     out.println("<br>");
-                    
+
                 }
             }
-
+            out.println(session.getAttribute("userid"));
             out.println("ciao");
             out.println("<h1>Servlet InvitiServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");

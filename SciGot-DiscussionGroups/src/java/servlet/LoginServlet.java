@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<form action='CreaGruppoServlet' method='POST'>");
             out.println("<input type='submit' value='Crea un gruppo'>");
             out.println("</form>");
-            out.println("<form action='InvitiServlet'>");
+            out.println("<form action='InvitiServlet' method='POST'>");
             out.println("<input type='submit' value='I tuoi inviti'>");
             out.println("</form>");
             out.println("<form action='LogoutServlet' method='POST'>");
@@ -161,7 +161,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user.nome_completo);
             session.setAttribute("userid", user.id);
 
-            // mando un redirect alla servlet che carica i prodotti
+           
             processRequest(request, response);
 
         }

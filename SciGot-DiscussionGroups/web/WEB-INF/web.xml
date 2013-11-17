@@ -29,13 +29,10 @@
         <servlet-class>servlet.VediGruppoServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InvitoAccettatoServlet</servlet-name>
-        <servlet-class>servlet.InvitoAccettatoServlet</servlet-class>
+        <servlet-name>InvitoRispostaServlet</servlet-name>
+        <servlet-class>servlet.InvitoRispostaServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>InvitoRifiutatoServlet</servlet-name>
-        <servlet-class>servlet.InvitoRifiutatoServlet</servlet-class>
-    </servlet>
+
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -61,12 +58,8 @@
         <url-pattern>/VediGruppoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InvitoAccettatoServlet</servlet-name>
-        <url-pattern>/InvitoAccettatoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InvitoRifiutatoServlet</servlet-name>
-        <url-pattern>/InvitoRifiutatoServlet</url-pattern>
+        <servlet-name>InvitoRispostaServlet</servlet-name>
+        <url-pattern>/InvitoRispostaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

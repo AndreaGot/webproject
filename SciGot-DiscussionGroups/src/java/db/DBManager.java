@@ -4,7 +4,6 @@
  */
 package db;
 
-
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -161,11 +160,11 @@ public class DBManager implements Serializable {
         }
         return groups;
     }
-    
-    public List<Invito> trovaInvito(HttpServletRequest req) throws SQLException { 
-    
-    HttpSession session = req.getSession(true);
-        stm = connect.prepareStatement("SELECT * FROM ((scigot.inviti I INNER JOIN scigot.gruppo G on I.Id_gruppo=G.Id_gruppo)INNER JOIN scigot.utente U ON G.Id_proprietario = U.Id_utente) WHERE I.Id_utente = ?");
+
+    public List<Invito> trovaInvito(HttpServletRequest req) throws SQLException {
+
+        HttpSession session = req.getSession(false);
+        stm = connect.prepareStatement("SELECT * FROM ((scigot.inviti I INNER JOIN scigot.gruppo G on I.Id_gruppo=G.Id_gruppo)INNER JOIN scigot.utente U ON G.Id_proprietario = U.Id_utente) WHERE I.Id_utente = ? AND I.Accettato = 0");
         List<Invito> inviti = new ArrayList<Invito>();
         try {
             stm.setString(1, (session.getAttribute("userid").toString()));
@@ -191,13 +190,13 @@ public class DBManager implements Serializable {
             stm.close();
         }
         return inviti;
-    
-    
+
+
     }
-    
-    public List<Post> trovaPost(HttpServletRequest req) throws SQLException { 
-    
-   
+
+    public List<Post> trovaPost(HttpServletRequest req) throws SQLException {
+
+
         stm = connect.prepareStatement("SELECT * FROM (scigot.post P INNER JOIN scigot.utente U on U.Id_utente=P.Id_autore) WHERE P.Id_gruppo = ? ORDER BY P.Id_post;");
         List<Post> posts = new ArrayList<Post>();
         try {
@@ -213,7 +212,7 @@ public class DBManager implements Serializable {
                     p.setContenuto(rs.getString("Contenuto"));
                     p.setData(rs.getDate("data"));
                     posts.add(p);
-            
+
                 }
             } finally {
                 // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
@@ -225,8 +224,46 @@ public class DBManager implements Serializable {
             stm.close();
         }
         return posts;
-    
-    
+
+
     }
-    
+
+    public Boolean settaInvito(HttpServletRequest req, String id, String risposta) throws SQLException {
+        HttpSession session = req.getSession(true);
+
+        stm = connect.prepareStatement("UPDATE `inviti` SET `Accettato`= ? WHERE `Id_gruppo` = ? AND `Id_utente` = ?");
+        try {
+            stm.setString(1, risposta);
+            stm.setString(2, id);
+            stm.setString(3, (session.getAttribute("userid").toString()));
+
+            stm.executeUpdate();
+
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
+
+    public Boolean inserisciUtente(HttpServletRequest req, String id) throws SQLException {
+        HttpSession session = req.getSession(true);
+
+        stm = connect.prepareStatement("INSERT INTO gruppo_utente ('Id_gruppo', 'Id_utente', 'Ruolo') VALUES (?,?,'User')");
+        try {
+            stm.setString(1, id);
+            stm.setString(2, (session.getAttribute("userid").toString()));
+
+            stm.executeUpdate();
+
+
+        } catch (Exception e) {
+            return false;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
 }

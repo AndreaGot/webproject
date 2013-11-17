@@ -33,7 +33,7 @@ public class CreaGruppoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession(false);
+       
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {

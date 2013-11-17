@@ -4,27 +4,38 @@
  */
 package servlet;
 
+import db.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ANDre1
  */
-public class InvitoRifiutatoServlet extends HttpServlet {
+public class InvitoRispostaServlet extends HttpServlet {
 
-    
+    private DBManager manager;
+
+    @Override
+    public void init() throws ServletException {
+        // inizializza il DBManager dagli attributi di Application
+        this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
+    }
+
+    // Effettuare la chiamata a due query:
+    // Una si occupa del flag dell'invito come 1 (accettato)
+    // Una si occupa dell'inserimento dell'utente nella tabella gruppo_utente
+    // In seguito la richiesta non comparirà più perchè è stata presa una decisione, mentre apparirà il gruppo
     // Effettuare la chiamata a una query che setta semplicemente il flag della richiesta come 0, rifiutando la proposta.
     // In seguito la richiesta non comparirà più perchè è stata presa una decisione
-    
-    
-    
-    
-    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -37,6 +48,37 @@ public class InvitoRifiutatoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        Boolean accettato = false;
+        String risposta = request.getParameter("risposta");
+        String idgruppo = request.getParameter("idgruppo");
+
+        if ("Accetta".equals(risposta)) {
+            try {
+                // L'invito è stato accettato
+                manager.settaInvito(request, idgruppo, "1");
+                manager.inserisciUtente(request, idgruppo);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(InvitoRispostaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            accettato = true;
+        } else if ("Rifiuta".equals(risposta)) {
+            // Settare invito come rifiutato
+            try {
+                // L'invito è stato accettato
+
+                manager.settaInvito(request, idgruppo, "2");
+
+
+            } catch (SQLException ex) {
+                Logger.getLogger(InvitoRispostaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
+
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -44,13 +86,22 @@ public class InvitoRifiutatoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InvitoRifiutatoServlet</title>");            
+            out.println("<title>Servlet InvitoAccettatoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InvitoRifiutatoServlet at " + request.getContextPath() + "</h1>");
+            if (accettato) {
+                out.println("<h1> INVITO ACCETTATO! BENVENUTO NEL GRUPPO!</h1>");
+            } else {
+                out.println("<h1> INVITO RIFIUTATO</h1>");
+            }
+            
+            out.println("<form action='InvitiServlet' method='POST'>");
+            out.println("<input type='submit' value='Ritorna agli inviti'>");
+            out.println("</form>");
+            
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -83,6 +134,8 @@ public class InvitoRifiutatoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+
         processRequest(request, response);
     }
 
