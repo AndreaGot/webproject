@@ -65,7 +65,7 @@ public class RisultatoInvitoServlet extends HttpServlet {
             if (fatto) {
                 out.println("<h1> Invito inviato a " + request.getParameter("nome") + " nel gruppo " + request.getParameter("idgruppo") + "</h1>");
             } else {
-                out.println("<h1> INVITO NON INVIATO</h1>");
+                out.println("<h1> INVITO NON INVIATO. Potrebbe essere già stato inviato in precedenza!</h1>");
             }
 
 
