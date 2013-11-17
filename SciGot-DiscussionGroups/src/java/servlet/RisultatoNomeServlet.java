@@ -4,36 +4,32 @@
  */
 package servlet;
 
-import db.Group;
 import db.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.http.HttpSession;
-
 
 /**
  *
  * @author ANDre1
  */
-public class GroupServlet extends HttpServlet {
-    private String userid;
-    private DBManager manager;
-    List<Group> groups;
+public class RisultatoNomeServlet extends HttpServlet {
 
-    @Override
+    private DBManager manager;
+    private Boolean fatto = false;
+    
+     @Override
     public void init() throws ServletException {
         // inizializza il DBManager dagli attributi di Application
         this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
     }
-
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -47,16 +43,14 @@ public class GroupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession(false);
-        System.out.println(request.getParameter("userid"));
-        
-        
         try {
-            groups = manager.trovaGruppo(request);
+            fatto = manager.settaNomeGruppo(request);
         } catch (SQLException ex) {
             Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -64,27 +58,21 @@ public class GroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GroupServlet</title>");
+            out.println("<title>Servlet RisultatoNomeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            for (Group g : groups) {
-                out.println("<h1>" + g.nome + "</h1>");
-                out.println("<form action='VediGruppoServlet' method='POST' >"
-                        + "<input type='text' name='view' value='" + g.id + "'>"
-                        + "<input type='submit' value='Vedi Gruppo'>"
-                        + "</form>");
-                if ((session.getAttribute("userid").toString()).equals(g.proprietario.toString())==true) {
-                    out.println("<form action='AmministraGruppoServlet' method='POST' >"
-                            + "<input type='text' name='id' value='" + g.id + "'>"
-                            + "<input type='submit' value='Amministra'>"
-                            + "</form>");
-                }
-                out.println("ciao");
+            
+            if (fatto) {
+                out.println("<h1> NOME CAMBIATO IN " + request.getParameter("nome") + "</h1>");
+            } else {
+                out.println("<h1> NOME NON CAMBIATO</h1>");
             }
-            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+            
+            
+            out.println("<h1>Servlet RisultatoNomeServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {
+        } finally {            
             out.close();
         }
     }
@@ -117,7 +105,6 @@ public class GroupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userid = request.getParameter("userid");
         processRequest(request, response);
     }
 

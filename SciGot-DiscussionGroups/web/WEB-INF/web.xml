@@ -32,7 +32,26 @@
         <servlet-name>InvitoRispostaServlet</servlet-name>
         <servlet-class>servlet.InvitoRispostaServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>AmministraGruppoServlet</servlet-name>
+        <servlet-class>servlet.AmministraGruppoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CambiaNomeServlet</servlet-name>
+        <servlet-class>servlet.CambiaNomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RisultatoNomeServlet</servlet-name>
+        <servlet-class>servlet.RisultatoNomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvitaUtenteServlet</servlet-name>
+        <servlet-class>servlet.InvitaUtenteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RisultatoInvitoServlet</servlet-name>
+        <servlet-class>servlet.RisultatoInvitoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -60,6 +79,26 @@
     <servlet-mapping>
         <servlet-name>InvitoRispostaServlet</servlet-name>
         <url-pattern>/InvitoRispostaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AmministraGruppoServlet</servlet-name>
+        <url-pattern>/AmministraGruppoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CambiaNomeServlet</servlet-name>
+        <url-pattern>/CambiaNomeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RisultatoNomeServlet</servlet-name>
+        <url-pattern>/RisultatoNomeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvitaUtenteServlet</servlet-name>
+        <url-pattern>/InvitaUtenteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RisultatoInvitoServlet</servlet-name>
+        <url-pattern>/RisultatoInvitoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

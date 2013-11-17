@@ -248,12 +248,76 @@ public class DBManager implements Serializable {
     }
 
     public Boolean inserisciUtente(HttpServletRequest req, String id) throws SQLException {
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
 
         stm = connect.prepareStatement("INSERT INTO gruppo_utente ('Id_gruppo', 'Id_utente', 'Ruolo') VALUES (?,?,'User')");
         try {
             stm.setString(1, id);
             stm.setString(2, (session.getAttribute("userid").toString()));
+
+            stm.executeUpdate();
+
+
+        } catch (Exception e) {
+            return false;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
+
+    public Boolean settaNomeGruppo(HttpServletRequest req) throws SQLException {
+        HttpSession session = req.getSession(false);
+
+        stm = connect.prepareStatement("UPDATE `gruppo` SET `Nome`= ? WHERE `Id_gruppo` = ? AND `Id_proprietario` = ?");
+        try {
+            stm.setString(1, req.getParameter("nome"));
+            stm.setString(2, req.getParameter("id"));
+            stm.setString(3, (session.getAttribute("userid").toString()));
+
+            stm.executeUpdate();
+
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
+
+    public String trovaIdDaNomeUtente(HttpServletRequest req) throws SQLException {
+        stm = connect.prepareStatement("SELECT Id_utente FROM utente WHERE Username = ?");
+        String ID;
+        try {
+            stm.setString(1, req.getParameter("nome"));
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    ID = (rs.getString("Id_utente"));
+                    return ID;
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return "";
+    }
+
+    public Boolean inserisciInvito(HttpServletRequest req, String id) throws SQLException {
+
+
+        stm = connect.prepareStatement("INSERT INTO `inviti`(`Id_gruppo`, `Id_utente`, `Accettato`) VALUES (?,?,'0')");
+        try {
+            stm.setString(1, req.getParameter("idgruppo"));
+            stm.setString(2, id);
 
             stm.executeUpdate();
 

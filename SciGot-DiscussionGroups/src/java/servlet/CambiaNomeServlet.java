@@ -4,35 +4,18 @@
  */
 package servlet;
 
-import db.Group;
-import db.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.http.HttpSession;
-
 
 /**
  *
  * @author ANDre1
  */
-public class GroupServlet extends HttpServlet {
-    private String userid;
-    private DBManager manager;
-    List<Group> groups;
-
-    @Override
-    public void init() throws ServletException {
-        // inizializza il DBManager dagli attributi di Application
-        this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
-    }
+public class CambiaNomeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -46,17 +29,6 @@ public class GroupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
-        System.out.println(request.getParameter("userid"));
-        
-        
-        try {
-            groups = manager.trovaGruppo(request);
-        } catch (SQLException ex) {
-            Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -64,31 +36,25 @@ public class GroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GroupServlet</title>");
+            out.println("<title>Servlet CambiaNomeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            for (Group g : groups) {
-                out.println("<h1>" + g.nome + "</h1>");
-                out.println("<form action='VediGruppoServlet' method='POST' >"
-                        + "<input type='text' name='view' value='" + g.id + "'>"
-                        + "<input type='submit' value='Vedi Gruppo'>"
-                        + "</form>");
-                if ((session.getAttribute("userid").toString()).equals(g.proprietario.toString())==true) {
-                    out.println("<form action='AmministraGruppoServlet' method='POST' >"
-                            + "<input type='text' name='id' value='" + g.id + "'>"
-                            + "<input type='submit' value='Amministra'>"
-                            + "</form>");
-                }
-                out.println("ciao");
-            }
-            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+            
+            out.println("<form action='RisultatoNomeServlet' method='POST'>");
+            out.println("<input type='text' name='id' value='"+ request.getParameter("id") + "'>");
+            out.println("<input type='text' name='nome' value='Inserisci il nome'>");
+            out.println("<input type='submit' value='Modifica Nome'>");
+            out.println("</form>");
+            
+            out.println("<h1>Servlet CambiaNomeServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {
+        } finally {            
             out.close();
         }
     }
 
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
@@ -117,7 +83,6 @@ public class GroupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userid = request.getParameter("userid");
         processRequest(request, response);
     }
 

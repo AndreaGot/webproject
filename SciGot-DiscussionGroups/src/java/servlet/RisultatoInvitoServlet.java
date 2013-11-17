@@ -4,29 +4,25 @@
  */
 package servlet;
 
-import db.Group;
 import db.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.http.HttpSession;
-
 
 /**
  *
  * @author ANDre1
  */
-public class GroupServlet extends HttpServlet {
-    private String userid;
+public class RisultatoInvitoServlet extends HttpServlet {
+
     private DBManager manager;
-    List<Group> groups;
+    private Boolean fatto = false;
 
     @Override
     public void init() throws ServletException {
@@ -46,13 +42,11 @@ public class GroupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
-        System.out.println(request.getParameter("userid"));
-        
-        
+        String idutente;
+
         try {
-            groups = manager.trovaGruppo(request);
+            idutente = manager.trovaIdDaNomeUtente(request);
+            fatto = manager.inserisciInvito(request, idutente);
         } catch (SQLException ex) {
             Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,24 +58,18 @@ public class GroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GroupServlet</title>");
+            out.println("<title>Servlet RisultatoInvitoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            for (Group g : groups) {
-                out.println("<h1>" + g.nome + "</h1>");
-                out.println("<form action='VediGruppoServlet' method='POST' >"
-                        + "<input type='text' name='view' value='" + g.id + "'>"
-                        + "<input type='submit' value='Vedi Gruppo'>"
-                        + "</form>");
-                if ((session.getAttribute("userid").toString()).equals(g.proprietario.toString())==true) {
-                    out.println("<form action='AmministraGruppoServlet' method='POST' >"
-                            + "<input type='text' name='id' value='" + g.id + "'>"
-                            + "<input type='submit' value='Amministra'>"
-                            + "</form>");
-                }
-                out.println("ciao");
+
+            if (fatto) {
+                out.println("<h1> Invito inviato a " + request.getParameter("nome") + " nel gruppo " + request.getParameter("idgruppo") + "</h1>");
+            } else {
+                out.println("<h1> INVITO NON INVIATO</h1>");
             }
-            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+
+
+            out.println("<h1>Servlet RisultatoInvitoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -117,7 +105,6 @@ public class GroupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userid = request.getParameter("userid");
         processRequest(request, response);
     }
 
