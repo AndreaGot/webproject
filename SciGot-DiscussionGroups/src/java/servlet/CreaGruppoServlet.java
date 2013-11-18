@@ -45,7 +45,7 @@ public class CreaGruppoServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>"+"Crea Gruppo"+"</h1>");
-            out.println("<form action=' ' method='POST'>");
+            out.println("<form action='RisultatoCreaGruppo' method='POST'>");
             out.println("Inserire nome del gruppo: "
             +"<input type='text' name='creaGruppoTextbox' value=' '>"
             +"<input type='submit' value='crea' name='crea' >");

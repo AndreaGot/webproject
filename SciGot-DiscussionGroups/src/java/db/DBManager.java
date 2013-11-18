@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -250,7 +253,7 @@ public class DBManager implements Serializable {
     public Boolean inserisciUtente(HttpServletRequest req, String id) throws SQLException {
         HttpSession session = req.getSession(false);
 
-        stm = connect.prepareStatement("INSERT INTO gruppo_utente ('Id_gruppo', 'Id_utente', 'Ruolo') VALUES (?,?,'User')");
+        stm = connect.prepareStatement("INSERT INTO gruppo_utente (`Id_gruppo`, `Id_utente`, `Ruolo`) VALUES (?,?,'User');");
         try {
             stm.setString(1, id);
             stm.setString(2, (session.getAttribute("userid").toString()));
@@ -310,6 +313,33 @@ public class DBManager implements Serializable {
         }
         return "";
     }
+    
+    
+    public String trovaIdDaGruppo(HttpServletRequest req) throws SQLException {
+        stm = connect.prepareStatement("SELECT Id_gruppo FROM gruppo WHERE Nome = ?");
+        String ID;
+        try {
+            stm.setString(1, req.getParameter("creaGruppoTextbox"));
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    ID = (rs.getString("Id_gruppo"));
+                    return ID;
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return "";
+    }
+
 
     public Boolean inserisciInvito(HttpServletRequest req, String id) throws SQLException {
 
@@ -330,4 +360,30 @@ public class DBManager implements Serializable {
         }
         return true;
     }
+
+    public Boolean inserisciGruppo(HttpServletRequest req) throws SQLException {
+        HttpSession session = req.getSession(false);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+
+        stm = connect.prepareStatement("INSERT INTO `gruppo`( `Nome`, `Id_proprietario`, `Data_creazione`) VALUES (?,?,?)");
+        try {
+            stm.setString(1, req.getParameter("creaGruppoTextbox"));
+            stm.setString(2, session.getAttribute("userid").toString());
+            stm.setString(3, dateFormat.format(date));
+
+            stm.executeUpdate();
+
+
+        } catch (Exception e) {
+            return false;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
+    
+    
 }

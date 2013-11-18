@@ -40,6 +40,10 @@
         <servlet-name>CambiaNomeServlet</servlet-name>
         <servlet-class>servlet.CambiaNomeServlet</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>CreaGruppoServlet</servlet-name>
+        <servlet-class>servlet.CreaGruppoServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>RisultatoNomeServlet</servlet-name>
         <servlet-class>servlet.RisultatoNomeServlet</servlet-class>
@@ -51,6 +55,10 @@
     <servlet>
         <servlet-name>RisultatoInvitoServlet</servlet-name>
         <servlet-class>servlet.RisultatoInvitoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RisultatoCreaGruppo</servlet-name>
+        <servlet-class>servlet.RisultatoCreaGruppo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -99,6 +107,14 @@
     <servlet-mapping>
         <servlet-name>RisultatoInvitoServlet</servlet-name>
         <url-pattern>/RisultatoInvitoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RisultatoCreaGruppo</servlet-name>
+        <url-pattern>/RisultatoCreaGruppo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreaGruppoServlet</servlet-name>
+        <url-pattern>/CreaGruppoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
