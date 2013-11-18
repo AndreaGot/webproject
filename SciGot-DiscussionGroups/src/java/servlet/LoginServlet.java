@@ -123,9 +123,6 @@ public class LoginServlet extends HttpServlet {
             out.println("<form action='CreaGruppoServlet' method='POST'>");
             out.println("<input type='submit' value='Crea un gruppo'>");
             out.println("</form>");
-            out.println("<form action='InvitiServlet' method='POST'>");
-            out.println("<input type='submit' value='I tuoi inviti'>");
-            out.println("</form>");
             out.println("<form action='LogoutServlet' method='POST'>");
             out.println("<input type='submit' value='Logout'>");
             out.println("</form>");
