@@ -51,6 +51,7 @@ public class AmministraGruppoServlet extends HttpServlet {
             out.println("</form>");
 
             out.println("<form action='CreaReportServlet' method='POST'>");
+            out.println("<input type='text' name='id' value='" + request.getParameter("id") + "'>");
             out.println("<input type='submit' value='Crea Report'>");
             out.println("</form>");
 

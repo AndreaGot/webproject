@@ -313,8 +313,7 @@ public class DBManager implements Serializable {
         }
         return "";
     }
-    
-    
+
     public String trovaIdDaGruppo(HttpServletRequest req) throws SQLException {
         stm = connect.prepareStatement("SELECT Id_gruppo FROM gruppo WHERE Nome = ?");
         String ID;
@@ -339,7 +338,6 @@ public class DBManager implements Serializable {
         }
         return "";
     }
-
 
     public Boolean inserisciInvito(HttpServletRequest req, String id) throws SQLException {
 
@@ -384,6 +382,65 @@ public class DBManager implements Serializable {
         }
         return true;
     }
-    
-    
+
+    public List<User> trovaUtente(HttpServletRequest request) throws SQLException {
+
+        // usare SEMPRE i PreparedStatement, anche per query banali. 
+        // *** MAI E POI MAI COSTRUIRE LE QUERY CONCATENANDO STRINGHE !!!! 
+
+        stm = connect.prepareStatement("select U.username, U.Nome_completo, U.Id_utente from utente U INNER JOIN gruppo_utente GU ON U.Id_utente = GU.Id_utente WHERE GU.Id_gruppo = ? ");
+        List<User> users = new ArrayList<User>();
+        try {
+            stm.setString(1, request.getParameter("id"));
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    User user = new User();
+                    user.setName(rs.getString("Nome_completo"));
+                    user.setUserName(rs.getString("username"));
+                    user.setId(rs.getString("Id_utente"));
+                    users.add(user);
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return users;
+    }
+
+    public String numeroPost(String id) throws SQLException {
+
+        stm = connect.prepareStatement("select count(*) as post from post where Id_autore = ?");
+        try {
+            stm.setString(1, id);
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                if (rs.next()) {
+
+                    return rs.getString("post");
+                } else {
+                    return null;
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+
+        } catch (Exception e) {
+            return null;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+
+    }
 }

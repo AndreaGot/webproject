@@ -9,11 +9,14 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import db.DBManager;
-import db.Group;
 import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +30,7 @@ import javax.servlet.http.HttpSession;
 public class CreaReportServlet extends HttpServlet {
 
     private DBManager manager;
-    List<User> user;
+    List<User> user = new ArrayList<User>();
 
     @Override
     public void init() throws ServletException {
@@ -47,9 +50,12 @@ public class CreaReportServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
-        // step 1: creation of a document-object
+        try {
+            user = manager.trovaUtente(request);
+            // step 1: creation of a document-object
+        } catch (SQLException ex) {
+            Logger.getLogger(CreaReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Document document = new Document();
 
@@ -61,13 +67,16 @@ public class CreaReportServlet extends HttpServlet {
             document.open();
 
             // Code 3
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(1);
             table.addCell("1");
             table.addCell("2");
             table.addCell("3");
             table.addCell("4");
             table.addCell("5");
             table.addCell("6");
+            for (User u : user) {
+                table.addCell(u.getUserName());
+            }
 
             // Code 4
             document.add(table);
