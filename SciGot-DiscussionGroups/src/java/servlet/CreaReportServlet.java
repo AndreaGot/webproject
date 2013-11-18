@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ANDre1
  */
-public class AmministraGruppoServlet extends HttpServlet {
+public class CreaReportServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,28 +36,13 @@ public class AmministraGruppoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AmministraGruppoServlet</title>");
+            out.println("<title>Servlet CreaReportServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-
-            out.println("<form action='CambiaNomeServlet' method='POST'>");
-            out.println("<input type='text' name='id' value='" + request.getParameter("id") + "'>");
-            out.println("<input type='submit' value='Modifica Nome'>");
-            out.println("</form>");
-
-            out.println("<form action='InvitaUtenteServlet' method='POST'>");
-            out.println("<input type='text' name='id' value='" + request.getParameter("id") + "'>");
-            out.println("<input type='submit' value='Invita Utente'>");
-            out.println("</form>");
-
-            out.println("<form action='CreaReportServlet' method='POST'>");
-            out.println("<input type='submit' value='Crea Report'>");
-            out.println("</form>");
-
-            out.println("<h1>Servlet AmministraGruppoServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreaReportServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {
+        } finally {            
             out.close();
         }
     }
