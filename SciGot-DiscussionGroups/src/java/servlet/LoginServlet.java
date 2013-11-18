@@ -6,6 +6,7 @@
 package servlet;
 
 import db.DBManager;
+import db.Invito;
 import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,9 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -28,6 +32,7 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 
     private DBManager manager;
+    private List<Invito> inviti;
 
     @Override
     public void init() throws ServletException {
@@ -48,10 +53,18 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
+        
+        
+        try {
+            inviti = manager.trovaInvito(request);
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd 'alle ore' HH:mm:ss");
+         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd 'alle ore' HH:mm:ss");
         Date date = new Date();
         
 
@@ -70,6 +83,23 @@ public class LoginServlet extends HttpServlet {
             out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
+            
+            if (inviti.size()<=0) {
+                out.println("<h1> nessun invito! </h1>");
+            } else {
+                for (Invito i : inviti) {
+                    out.println("Un invito da " + i.owner + " per il gruppo " + i.nomeGruppo);
+                    out.println("<form action='InvitoRispostaServlet' method='POST'>");
+                    out.println("<input type='hidden' name='idgruppo' value='" + i.idGruppo + "'>");
+                    out.println("<input type='submit' name='risposta' value='Accetta'>");
+                    out.println("<input type='submit' name='risposta' value='Rifiuta'>");
+                    out.println("</form>");
+                    out.println("<br>");
+                    out.println("<br>");
+
+                }
+            }
+            
             out.println("<h1>Ciao, " + session.getAttribute("user") + "." + "</h1>");
 
             for (int i = 0; i < cookies.length; i++) {
