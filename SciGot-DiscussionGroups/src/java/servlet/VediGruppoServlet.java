@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,13 +28,13 @@ public class VediGruppoServlet extends HttpServlet {
     private String userid;
     private DBManager manager;
     List<Post> posts;
-    
+
     @Override
     public void init() throws ServletException {
         // inizializza il DBManager dagli attributi di Application
         this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
     }
-    
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -46,13 +47,16 @@ public class VediGruppoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        HttpSession session = request.getSession(false);
+
+
         try {
             posts = manager.trovaPost(request);
         } catch (SQLException ex) {
             Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -60,25 +64,31 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VediGruppoServlet</title>");            
+            out.println("<title>Servlet VediGruppoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             for (Post p : posts) {
-                out.println("il " + p.data + ", " + p.Autore + " scrive: '" + p.contenuto + "' <br>" );
-                
-            
+                out.println("il " + p.data + ", " + p.Autore + " scrive: '" + p.contenuto + "' <br>");
             }
-          
-                  out.println("<form action='InserisciPostServlet' method='POST'>");
-            out.println("<input type='text' name='contenuto'   value='Scrivi il tuo commento' />"
-            + "<input type='submit' name='AggiungiPost' value='Aggiungi'/>"
-                    +  "<input type='text' name='passaID' value='" + request.getParameter("view") + "'>");
+
+            out.println("<form action='InserisciPostServlet' method='POST'>");
+            out.println("<input type='text' name='contenuto'   value='Scrivi il tuo commento' />");
+            out.println("<input type='submit' name='AggiungiPost' value='Aggiungi'/>");
+            out.println("<input type='text' name='passaID' value='" + request.getParameter("view") + "'>");
             out.println("</form>");
             out.println("<h1>Servlet VediGruppoServlet at " + request.getContextPath() + "</h1>");
+
+            session.setAttribute("idgruppo", request.getParameter("view"));
+
+            out.println("<form enctype='multipart/form-data' method='POST' action='UploadFileServlet'>");
+            out.println("<input type='file' name='file'>");
+            out.println("<input type='submit' value='Upload'>");
+            out.println("</form>");
+
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }

@@ -414,11 +414,14 @@ public class DBManager implements Serializable {
         return users;
     }
 
-    public String numeroPost(String id) throws SQLException {
+    public String numeroPost(HttpServletRequest request,String id) throws SQLException {
 
-        stm = connect.prepareStatement("select count(*) as post from post where Id_autore = ?");
+        HttpSession session = request.getSession(false);
+        
+        stm = connect.prepareStatement("select count(*) as post from post where Id_autore = ? and Id_gruppo =?");
         try {
             stm.setString(1, id);
+            stm.setString(2, session.getAttribute("idgruppo").toString());
 
             ResultSet rs = stm.executeQuery();
 
@@ -470,6 +473,27 @@ public class DBManager implements Serializable {
         return true;
     }
     
+    public Boolean inserisciFile(HttpServletRequest req, String path, String nome) throws SQLException {
+        HttpSession session = req.getSession(false);
+
+        stm = connect.prepareStatement("INSERT INTO `post_file`( `Id_gruppo`, `File`,`Nome`,`id_autore`) VALUES (?,?,?,?)");
+        try {
+            stm.setString(1, session.getAttribute("idgruppo").toString());
+            stm.setString(2,path);
+            stm.setString(3,nome);
+            stm.setString(4, session.getAttribute("userid").toString());
+
+            stm.executeUpdate();
+
+
+        } catch (SQLException e) {
+            return false;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
     
     
 }

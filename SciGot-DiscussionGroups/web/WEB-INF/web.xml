@@ -68,6 +68,10 @@
         <servlet-name>InserisciPostServlet</servlet-name>
         <servlet-class>servlet.InserisciPostServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadFileServlet</servlet-name>
+        <servlet-class>servlet.UploadFileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -131,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>InserisciPostServlet</servlet-name>
         <url-pattern>/InserisciPostServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadFileServlet</servlet-name>
+        <url-pattern>/UploadFileServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

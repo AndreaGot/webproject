@@ -50,6 +50,9 @@ public class CreaReportServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String posts = "";
+        
         try {
             user = manager.trovaUtente(request);
             // step 1: creation of a document-object
@@ -68,14 +71,15 @@ public class CreaReportServlet extends HttpServlet {
 
             // Code 3
             PdfPTable table = new PdfPTable(1);
-            table.addCell("1");
-            table.addCell("2");
-            table.addCell("3");
-            table.addCell("4");
-            table.addCell("5");
-            table.addCell("6");
             for (User u : user) {
                 table.addCell(u.getUserName());
+                try {
+                    posts = manager.numeroPost(request, u.getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreaReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                table.addCell(posts);
             }
 
             // Code 4
