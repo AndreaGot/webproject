@@ -79,9 +79,10 @@ public class GroupServlet extends HttpServlet {
                             + "<input type='submit' value='Amministra'>"
                             + "</form>");
                 }
-                out.println("ciao");
+                
             }
             out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {

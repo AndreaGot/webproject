@@ -66,8 +66,15 @@ public class VediGruppoServlet extends HttpServlet {
             
             for (Post p : posts) {
                 out.println("il " + p.data + ", " + p.Autore + " scrive: '" + p.contenuto + "' <br>" );
-            }
+                
             
+            }
+          
+                  out.println("<form action='InserisciPostServlet' method='POST'>");
+            out.println("<input type='text' name='contenuto'   value='Scrivi il tuo commento' />"
+            + "<input type='submit' name='AggiungiPost' value='Aggiungi'/>"
+                    +  "<input type='text' name='passaID' value='" + request.getParameter("view") + "'>");
+            out.println("</form>");
             out.println("<h1>Servlet VediGruppoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");

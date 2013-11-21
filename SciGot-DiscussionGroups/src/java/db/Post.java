@@ -12,17 +12,17 @@ import java.util.Date;
  */
 public class Post {
 
-    public String idGruppo;
+    public String idPost;
     public String Autore;
     public String contenuto;
     public Date data;
 
     public String getId() {
-        return idGruppo;
+        return idPost;
     }
 
     public void setId(String id) {
-        this.idGruppo = id;
+        this.idPost = id;
     }
 
     public String getAutore() {

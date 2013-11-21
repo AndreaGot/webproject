@@ -443,4 +443,33 @@ public class DBManager implements Serializable {
         }
 
     }
+    
+    
+     public Boolean inserisciPost(HttpServletRequest req) throws SQLException {
+        HttpSession session = req.getSession(false);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+
+        stm = connect.prepareStatement("INSERT INTO `post`( `Id_gruppo`, `Id_autore`,`contenuto` ,`Data`) VALUES (?,?,?,?)");
+        try {
+            stm.setString(1, req.getParameter("passaID"));
+            stm.setString(2, session.getAttribute("userid").toString());
+            stm.setString(3,req.getParameter("contenuto"));
+            stm.setString(4, dateFormat.format(date));
+
+            stm.executeUpdate();
+
+
+        } catch (SQLException e) {
+            return false;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+        return true;
+    }
+    
+    
+    
 }

@@ -159,12 +159,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession session = request.getSession(true);
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         // controllo nel DB se esiste un utente con lo stesso username + password
         User user;
-
+       
+        
         try {
             user = manager.authenticate(username, password);
         } catch (SQLException ex) {
@@ -184,9 +185,13 @@ public class LoginServlet extends HttpServlet {
             // imposto l'utente connesso come attributo di sessione
             // per adesso e' solo un oggetto String con il nome dell'utente, ma posso metterci anche un oggetto User
             // con, ad esempio, il timestamp di login
-            HttpSession session = request.getSession(true);
+            
+            
+            
+            
             session.setAttribute("user", user.nome_completo);
             session.setAttribute("userid", user.id);
+           
 
            
             processRequest(request, response);
