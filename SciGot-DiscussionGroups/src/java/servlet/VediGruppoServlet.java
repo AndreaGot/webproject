@@ -77,6 +77,7 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<input type='submit' name='AggiungiPost' value='Aggiungi'/>");
             out.println("<input type='text' name='passaID' value='" + request.getParameter("view") + "'>");
             out.println("</form>");
+            
             out.println("<h1>Servlet VediGruppoServlet at " + request.getContextPath() + "</h1>");
 
             session.setAttribute("idgruppo", request.getParameter("view"));

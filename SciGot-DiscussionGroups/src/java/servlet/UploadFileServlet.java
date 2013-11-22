@@ -105,7 +105,7 @@ public class UploadFileServlet extends HttpServlet {
                 
                 out.println();
             }
-        } catch (IOException lEx) {
+        } catch (Exception lEx) {
 
             this.getServletContext().log(lEx, "error reading or saving file");
 
