@@ -51,7 +51,8 @@ public class InserisciPostServlet extends HttpServlet {
         String str = request.getParameter("contenuto");
         String[] array = new String[500];
 
-        Integer i = 0;
+        Integer i;
+        i = 0;
 
         for (i = 0; i < 500; i++) {
             array[i] = "";

@@ -43,9 +43,9 @@ public class UploadFileServlet extends HttpServlet {
 
 
         folder = session.getAttribute("idgruppo").toString();
-        dirBase = "/Users/ANDre1/Apache_Tomcat/files/";
-        //dirPath = request.getSession().getServletContext().getRealPath("/") + folder;
-        dirPath = dirBase + folder;
+        //dirBase = "/Users/ANDre1/Apache_Tomcat/files/";
+        dirPath = getServletContext().getRealPath("/") + folder;
+        //dirPath = dirBase + folder;
 
         File theDir = new File(dirPath);
 
@@ -58,7 +58,7 @@ public class UploadFileServlet extends HttpServlet {
                 System.out.println("DIR created");
             }
         }
-
+//
 
         PrintWriter out = response.getWriter();
         response.setContentType("text/plain");

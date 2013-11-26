@@ -496,4 +496,37 @@ public class DBManager implements Serializable {
     }
     
     
+    
+    public String trovaFileLink(HttpServletRequest request,String id) throws SQLException {
+
+        
+        stm = connect.prepareStatement("SELECT `File` FROM `post_file` WHERE `Nome`= ? AND `Id_gruppo` = ?");
+        try {
+            stm.setString(1, id);
+            stm.setString(2, request.getParameter("passaID").toString());
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                if (rs.next()) {
+
+                    return rs.getString("File");
+                } else {
+                    return null;
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+
+        } catch (Exception e) {
+            return null;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+
+    }
+    
 }
