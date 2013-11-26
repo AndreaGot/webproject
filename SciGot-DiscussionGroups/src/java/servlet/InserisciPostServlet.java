@@ -35,8 +35,9 @@ public class InserisciPostServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -49,46 +50,58 @@ public class InserisciPostServlet extends HttpServlet {
         // string to split
         String str = request.getParameter("contenuto");
         String[] array = new String[500];
-        
+
         Integer i = 0;
-        
-        for(i=0;i<500;i++)
-        {
-           array[i] = "";
+
+        for (i = 0; i < 500; i++) {
+            array[i] = "";
         }
-        
+
 
         Scanner s = new Scanner(str);
-        String post="";
-        i=0;
+        String post = "";
+        String link = null;
+        i = 0;
         while (s.hasNext()) {
             array[i] = s.next();
             System.out.println(array[i]);
             i++;
         }
-        i=0;
-        for(i=0;i<array.length;i++){
-            if (array[i].equals("")){break;}
-            if (array[i].startsWith("$$")){
-                array[i]=array[i].replace("$$","");
-                post=post+" <a href='http://"+array[i]+"'>"+array[i]+"</a>";
+        i = 0;
+        for (i = 0; i < array.length; i++) {
+            if (array[i].equals("")) {
+                break;
             }
-            else{
-            post=post+" "+array[i];
+            if (array[i].startsWith("$$")) {
+                try {
+                    array[i] = array[i].replace("$$", "");
+                    link = manager.trovaFileLink(request, array[i]);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InserisciPostServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (link == null) {
+                    post = post + " <a href='http://" + array[i] + "'>" + array[i] + "</a>";
+                } else {
+                    post = post + " <a href='file://"+ link + "'>" + array[i] + "</a>";
+                    // non so se qui sopra dopo href ci va file://o no
+                }
+                } 
+             else {
+                post = post + " " + array[i];
             }
-            
+
         }
         System.out.println(post);
-        
+
         try {
-         inserito = manager.inserisciPost(request, post);
-            
-            
-         } catch (SQLException ex) {
-         Logger.getLogger(RisultatoCreaGruppo.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
-        
+            inserito = manager.inserisciPost(request, post);
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RisultatoCreaGruppo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -110,7 +123,8 @@ public class InserisciPostServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -124,7 +138,8 @@ public class InserisciPostServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -146,5 +161,4 @@ public class InserisciPostServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
