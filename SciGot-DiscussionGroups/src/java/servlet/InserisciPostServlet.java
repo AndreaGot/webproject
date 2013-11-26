@@ -83,11 +83,10 @@ public class InserisciPostServlet extends HttpServlet {
                 if (link == null) {
                     post = post + " <a href='http://" + array[i] + "'>" + array[i] + "</a>";
                 } else {
-                    post = post + " <a href='file://"+ link + "'>" + array[i] + "</a>";
-                    // non so se qui sopra dopo href ci va file://o no
+                    post = post + " <form action='DownloadFileServlet' method='POST'> <input type='hidden' name='link' value='" + link + "'> <input type='submit' value='" + array[i] + "'> </form>";
+
                 }
-                } 
-             else {
+            } else {
                 post = post + " " + array[i];
             }
 
