@@ -49,22 +49,29 @@ public class InserisciPostServlet extends HttpServlet {
         // string to split
         String str = request.getParameter("contenuto");
         String[] array = new String[500];
+        
+        Integer i = 0;
+        
+        for(i=0;i<500;i++)
+        {
+           array[i] = "";
+        }
+        
 
         Scanner s = new Scanner(str);
         String post="";
-        Integer i = 0;
-        Integer j;
+        i=0;
         while (s.hasNext()) {
             array[i] = s.next();
             System.out.println(array[i]);
             i++;
         }
-         
+        i=0;
         for(i=0;i<array.length;i++){
             if (array[i].equals("")){break;}
             if (array[i].startsWith("$$")){
                 array[i]=array[i].replace("$$","");
-                post=post+" <a href='"+array[i]+"'>"+array[i]+"</a>";
+                post=post+" <a href='http://"+array[i]+"'>"+array[i]+"</a>";
             }
             else{
             post=post+" "+array[i];
@@ -73,13 +80,15 @@ public class InserisciPostServlet extends HttpServlet {
         }
         System.out.println(post);
         
-        /*  try {
-         inserito = manager.inserisciPost(request);
+        try {
+         inserito = manager.inserisciPost(request, post);
             
             
          } catch (SQLException ex) {
          Logger.getLogger(RisultatoCreaGruppo.class.getName()).log(Level.SEVERE, null, ex);
-         }*/
+         }
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
