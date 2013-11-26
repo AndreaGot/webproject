@@ -448,7 +448,7 @@ public class DBManager implements Serializable {
     }
     
     
-     public Boolean inserisciPost(HttpServletRequest req) throws SQLException {
+     public Boolean inserisciPost(HttpServletRequest req, String post) throws SQLException {
         HttpSession session = req.getSession(false);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -458,7 +458,7 @@ public class DBManager implements Serializable {
         try {
             stm.setString(1, req.getParameter("passaID"));
             stm.setString(2, session.getAttribute("userid").toString());
-            stm.setString(3,req.getParameter("contenuto"));
+            stm.setString(3,post);
             stm.setString(4, dateFormat.format(date));
 
             stm.executeUpdate();
