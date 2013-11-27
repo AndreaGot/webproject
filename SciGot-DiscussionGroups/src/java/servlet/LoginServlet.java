@@ -81,21 +81,25 @@ public class LoginServlet extends HttpServlet {
             out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' media='all'>");
             out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
+            out.println("<div class='content'>");
             out.println("<body>");
             out.println("<div class='saluti'>");
+            out.println("<div id='welcome'>");
             out.println("<h3>Benvenuto " + session.getAttribute("user") + "." + "</h3>");
-
+            out.println("</div>");
             for (int i = 0; i < cookies.length; i++) {
                 cookie = cookies[i];
                 if (("date_cookie" + session.getAttribute("userid")).equals(cookie.getName())) {
-                    out.println("<h5>Il tuo ultimo accesso risale alla data " + cookie.getValue()+"</h5>");
+                    out.println("<div class='last_login'>");
+                    out.println("<h5 >Il tuo ultimo accesso risale alla data " + cookie.getValue()+"</h5>");
+                    out.println("</div>");
                     trovato = true;
                     break;
                 }
             }
 
             if (!trovato) {
-                out.println("Questo è il tuo primo accesso!");
+                out.println("<h5 >Questo è il tuo primo accesso!</h5>");
             }
             out.println("</div>");
             if (inviti.size() <= 0) {
@@ -123,6 +127,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<form action='LogoutServlet' method='POST'>");
             out.println("<input type='submit' value='Logout'>");
             out.println("</form>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         } finally {

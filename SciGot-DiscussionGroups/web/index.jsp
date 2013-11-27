@@ -40,6 +40,8 @@
                         </div>
                     </div>
 
+                    
+                    <div class="message">
                     <%
                         if (request.getAttribute("message") == null) {
                             out.println(" ");
@@ -49,7 +51,7 @@
                         }
 
                     %> 
-
+                    </div>
 
                     <div class="submit_button">
                         <input type="submit" value="Accedi" name="ok" />

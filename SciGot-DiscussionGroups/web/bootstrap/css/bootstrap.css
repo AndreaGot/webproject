@@ -50,7 +50,9 @@ html {
 
 body {
   margin: 0;
-  
+  width: 60%;
+  margin-left: 20%;
+  height: 100%;
 }
 
 a {
@@ -7109,7 +7111,7 @@ td.visible-print {
   }
 }
 
-//----LOGIN----//
+/*login*/
 
 .username{
     display: block;
@@ -7141,12 +7143,42 @@ td.visible-print {
     width: 100px;
      background-color: #C9FFD8;
      margin-top: 10px;
-     
+     color:#588D4E;
+}
+.message{
+    color:#b84747;
 }
 
-//----HOME---//
+
+/*home*/
 
 .saluti{
     background-color: red;
+    display:block;
+    padding-top: 20px;
+    text-align: center;
+    border-bottom-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    border-right-color: transparent;
+    border-left-color: transparent;
 }
 
+.content{
+    height: 100%;
+    border-left-color:  gray;
+  border-right-color: gray;
+  border-style: solid ;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  border-width: 1px;
+}
+
+#welcome{
+    color: yellow;
+}
+
+.last_login{
+    padding-bottom: 20px;
+    color:yellow;
+}
