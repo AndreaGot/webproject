@@ -86,6 +86,9 @@ public class InserisciPostServlet extends HttpServlet {
                     post = post + " <form action='DownloadFileServlet' method='POST'> <input type='hidden' name='link' value='" + link + "'> <input type='submit' value='" + array[i] + "'> </form>";
 
                 }
+
+            } else if (array[i].startsWith("http://")) {
+                post = post + " <a href='" + array[i] + "'>" + array[i] + "</a>";
             } else {
                 post = post + " " + array[i];
             }
