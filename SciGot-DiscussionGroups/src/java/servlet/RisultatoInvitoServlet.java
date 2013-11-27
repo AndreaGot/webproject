@@ -69,6 +69,11 @@ public class RisultatoInvitoServlet extends HttpServlet {
             }
 
 
+            out.println("<form action='GroupServlet' method = 'POST'>");
+            out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
+            out.println("</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+
             out.println("<h1>Servlet RisultatoInvitoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");

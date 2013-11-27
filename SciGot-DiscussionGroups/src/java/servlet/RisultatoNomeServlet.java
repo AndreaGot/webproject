@@ -23,13 +23,13 @@ public class RisultatoNomeServlet extends HttpServlet {
 
     private DBManager manager;
     private Boolean fatto = false;
-    
-     @Override
+
+    @Override
     public void init() throws ServletException {
         // inizializza il DBManager dagli attributi di Application
         this.manager = (DBManager) super.getServletContext().getAttribute("dbmanager");
     }
-    
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -42,15 +42,15 @@ public class RisultatoNomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             fatto = manager.settaNomeGruppo(request);
         } catch (SQLException ex) {
             Logger.getLogger(GroupServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
-        
+
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -58,21 +58,25 @@ public class RisultatoNomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RisultatoNomeServlet</title>");            
+            out.println("<title>Servlet RisultatoNomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             if (fatto) {
                 out.println("<h1> NOME CAMBIATO IN " + request.getParameter("nome") + "</h1>");
             } else {
                 out.println("<h1> NOME NON CAMBIATO</h1>");
             }
-            
-            
+
+            out.println("<form action='GroupServlet' method = 'POST'>");
+            out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
+            out.println("</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+
             out.println("<h1>Servlet RisultatoNomeServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }

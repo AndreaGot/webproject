@@ -83,6 +83,9 @@ public class GroupServlet extends HttpServlet {
             }
             out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
             
+
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {

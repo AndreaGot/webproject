@@ -117,6 +117,12 @@ public class InserisciPostServlet extends HttpServlet {
             out.println("<body>");
 
             out.println("<h1>Servlet InserisciPostServlet at " + request.getContextPath() + "</h1>");
+
+            out.println("<form action='VediGruppoServlet' method='POST' >");
+            out.println("<input type='text' name='view' value='" + request.getParameter("passaID") + "'>"
+                    + "<input type='submit' value='Torna alla pagina del gruppo'>"
+                    + "</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
             out.println("</body>");
             out.println("</html>");
         } finally {

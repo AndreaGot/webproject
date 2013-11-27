@@ -99,6 +99,8 @@ public class InvitoRispostaServlet extends HttpServlet {
             out.println("<input type='submit' value='Ritorna agli inviti'>");
             out.println("</form>");
             
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {

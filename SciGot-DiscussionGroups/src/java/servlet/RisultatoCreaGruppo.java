@@ -78,6 +78,10 @@ public class RisultatoCreaGruppo extends HttpServlet {
 
             }
             out.println("<h1>Servlet RisultatoCreaGruppo at " + request.getContextPath() + "</h1>");
+            
+
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {

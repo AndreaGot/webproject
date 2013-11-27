@@ -33,11 +33,11 @@ public class AmministraGruppoServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
+
             HttpSession session = request.getSession(false);
             session.setAttribute("idgruppo", request.getParameter("id"));
-            
-            
+
+
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -46,7 +46,9 @@ public class AmministraGruppoServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
+
             out.println("<form action='CambiaNomeServlet' method='POST'>");
+            out.println("<input type='text' name='id' value='" + request.getParameter("id") + "'>");
             out.println("<input type='submit' value='Modifica Nome'>");
             out.println("</form>");
 
@@ -61,6 +63,12 @@ public class AmministraGruppoServlet extends HttpServlet {
             out.println("</form>");
 
             out.println("<h1>Servlet AmministraGruppoServlet at " + request.getContextPath() + "</h1>");
+
+            out.println("<form action='GroupServlet' method = 'POST'>");
+            out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
+            out.println("</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+
             out.println("</body>");
             out.println("</html>");
         } finally {

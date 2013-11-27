@@ -86,6 +86,11 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<input type='file' name='file'>");
             out.println("<input type='submit' value='Upload'>");
             out.println("</form>");
+            
+                        out.println("<form action='GroupServlet' method = 'POST'>");
+            out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
+            out.println("</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
 
             out.println("</body>");
             out.println("</html>");

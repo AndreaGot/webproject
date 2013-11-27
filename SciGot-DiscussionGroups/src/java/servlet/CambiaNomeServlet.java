@@ -36,25 +36,30 @@ public class CambiaNomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CambiaNomeServlet</title>");            
+            out.println("<title>Servlet CambiaNomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             out.println("<form action='RisultatoNomeServlet' method='POST'>");
-            out.println("<input type='text' name='id' value='"+ request.getParameter("id") + "'>");
+            out.println("<input type='text' name='id' value='" + request.getParameter("id") + "'>");
             out.println("<input type='text' name='nome' value='Inserisci il nome'>");
             out.println("<input type='submit' value='Modifica Nome'>");
             out.println("</form>");
-            
+
             out.println("<h1>Servlet CambiaNomeServlet at " + request.getContextPath() + "</h1>");
+
+            out.println("<form action='GroupServlet' method = 'POST'>");
+            out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
+            out.println("</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
 
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP

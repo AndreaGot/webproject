@@ -36,20 +36,26 @@ public class InvitaUtenteServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InvitaUtenteServlet</title>");            
+            out.println("<title>Servlet InvitaUtenteServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             out.println("<form action='RisultatoInvitoServlet' method='POST'>");
-            out.println("<input type='text' name='idgruppo' value='"+ request.getParameter("id") + "'>");
+            out.println("<input type='text' name='idgruppo' value='" + request.getParameter("id") + "'>");
             out.println("<input type='text' name='nome' value='Inserisci l'username dell'utente'>");
             out.println("<input type='submit' value='Invita Utente'>");
             out.println("</form>");
-            
+
             out.println("<h1>Servlet InvitaUtenteServlet at " + request.getContextPath() + "</h1>");
+
+            out.println("<form action='GroupServlet' method = 'POST'>");
+            out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
+            out.println("</form>");
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
