@@ -7121,10 +7121,7 @@ td.visible-print {
     margin-right: 10px;
 }
 
-#username_textbox input{
-     border-radius: 5px 5px 5px 5px; 
-    
-}
+
 
 
 .password{
@@ -7138,14 +7135,18 @@ td.visible-print {
     
 }
 
-#password_textbox input{
-     border-radius: 5px 5px 5px 5px; 
-}
+
 
 .submit_button input{
     width: 100px;
-     border-radius: 5px 5px 5px 5px; 
-     background-color: #f2dede;
+     background-color: #C9FFD8;
      margin-top: 10px;
+     
+}
+
+//----HOME---//
+
+.saluti{
+    background-color: red;
 }
 

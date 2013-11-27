@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css";
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
               <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -52,7 +52,7 @@
 
 
                     <div class="submit_button">
-                        <input type="submit" value="ok" name="ok" />
+                        <input type="submit" value="Accedi" name="ok" />
                     </div>
                 </form>
             </div>
