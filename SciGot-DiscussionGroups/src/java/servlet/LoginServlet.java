@@ -78,11 +78,12 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' media='all'>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
-            out.println("<div class='content'>");
+            
             out.println("<body>");
+            out.println("<div class='content'>");
             out.println("<div class='saluti'>");
             out.println("<div id='welcome'>");
             out.println("<h3>Benvenuto " + session.getAttribute("user") + "." + "</h3>");
@@ -91,7 +92,7 @@ public class LoginServlet extends HttpServlet {
                 cookie = cookies[i];
                 if (("date_cookie" + session.getAttribute("userid")).equals(cookie.getName())) {
                     out.println("<div class='last_login'>");
-                    out.println("<h5 >Il tuo ultimo accesso risale alla data " + cookie.getValue()+"</h5>");
+                    out.println("<h5 >Il tuo ultimo accesso risale alla data " + cookie.getValue() + "</h5>");
                     out.println("</div>");
                     trovato = true;
                     break;
@@ -102,15 +103,26 @@ public class LoginServlet extends HttpServlet {
                 out.println("<h5 >Questo è il tuo primo accesso!</h5>");
             }
             out.println("</div>");
+
             if (inviti.size() <= 0) {
+                out.println("<div class='inviti'>");
                 out.println("<h1> nessun invito! </h1>");
+                out.println("</div>");
             } else {
+
                 for (Invito i : inviti) {
+                    out.println("<div class='lista_inviti'>");
                     out.println("Un invito da " + i.owner + " per il gruppo " + i.nomeGruppo);
+                    out.println("</div>");
                     out.println("<form action='InvitoRispostaServlet' method='POST'>");
                     out.println("<input type='hidden' name='idgruppo' value='" + i.idGruppo + "'>");
+                    
+                    out.println("<div class='accetta_invito'>");
                     out.println("<input type='submit' name='risposta' value='Accetta'>");
+                    out.println("</div>");
+                    out.println("<div class='rifiuta_invito'>");
                     out.println("<input type='submit' name='risposta' value='Rifiuta'>");
+                    out.println("</div>");
                     out.println("</form>");
                     out.println("<br>");
                     out.println("<br>");

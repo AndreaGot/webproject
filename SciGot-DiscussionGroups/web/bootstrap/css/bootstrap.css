@@ -7165,20 +7165,23 @@ td.visible-print {
 }
 
 .content{
-    height: 100%;
-    border-left-color:  gray;
+  height: 100%;
+   
+  border-left-color:  gray;
   border-right-color: gray;
   border-style: solid ;
   border-bottom-color: transparent;
   border-top-color: transparent;
-  border-width: 1px;
+  border-width: 2px;
+  box-shadow: 10px 0px 5px #C2C2C2;
 }
 
 #welcome{
-    color: yellow;
+    color: green;
 }
 
 .last_login{
     padding-bottom: 20px;
-    color:yellow;
+    color:blue;
 }
+
