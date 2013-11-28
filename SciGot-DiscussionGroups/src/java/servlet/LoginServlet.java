@@ -86,6 +86,9 @@ public class LoginServlet extends HttpServlet {
             out.println("<div class='content'>");
             out.println("<div class='saluti'>");
             out.println("<div id='welcome'>");
+            out.println("<div class='ciao'>");
+                    out.println("ciao");
+            out.println("</div>");
             out.println("<h3>Benvenuto " + session.getAttribute("user") + "." + "</h3>");
             out.println("</div>");
             for (int i = 0; i < cookies.length; i++) {
