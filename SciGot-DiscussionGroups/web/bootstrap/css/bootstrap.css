@@ -1891,7 +1891,7 @@ input[type="checkbox"] {
 }
 
 input[type="file"] {
-  display: block;
+  
 }
 
 select[multiple],
@@ -5631,7 +5631,7 @@ a.list-group-item.active:focus .list-group-item-text {
   border: 1px solid transparent;
   border-radius: 4px;
   width: 40%;
-  margin-left: 30%;
+ 
   margin-top: 20%;
   
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -5824,6 +5824,9 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel-primary {
   border-color: #428bca;
+  width: 100%;
+  height: 100%;
+  margin-top: 5%;
 }
 
 .panel-primary > .panel-heading {
@@ -5891,11 +5894,12 @@ a.list-group-item.active:focus .list-group-item-text {
 .panel-danger {
   border-color:gray;
   box-shadow: 10px 10px 5px #C2C2C2;
+  margin-left: 30%;
 }
 
 .panel-danger > .panel-heading {
-  color: #588D4E;
-  background-color: #C9FFD8;
+  color: #442308;
+  background-color: #9F6F48;
   border-color: gray;
   
 }
@@ -7140,7 +7144,7 @@ td.visible-print {
 
 
 .submit_button input{
-    width: 800px;
+    width: 100px;
      background-color: #C9FFD8;
      margin-top: 10px;
      color:#588D4E;
@@ -7153,11 +7157,11 @@ td.visible-print {
 /*home*/
 
 .saluti{
-    background-color: red;
+    background-color: #9F6F48;
     display:block;
     padding-top: 20px;
     text-align: center;
-    border-bottom-color: gray;
+    border-bottom-color: transparent;
     border-style: solid;
     border-width: 1px;
     border-right-color: transparent;
@@ -7177,11 +7181,203 @@ td.visible-print {
 }
 
 #welcome{
-    color: green;
+    color: white;
 }
 
 .last_login{
     padding-bottom: 20px;
-    color:blue;
+    color:white;
 }
 
+.lista_inviti{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.accetta_invito{
+    float: left;
+    margin-right: 20px;
+    margin-left: 300px;
+}
+
+.accetta_invito input{
+    width: 100px;
+    height: 30px;
+    background-color: #9F6F48;
+    color:white;
+    
+}
+.rifiuta_invito{
+    display: inline;
+    float: left;
+    
+}
+
+.rifiuta_invito input{
+    width: 100px;
+    height: 30px;
+    background-color: #9F6F48;
+    color:white;
+    
+}
+
+.inviti_blocco{
+    text-align: center;
+    
+  
+    
+}
+
+.gruppo_button{
+    float:left;
+    width: 100px;
+    height: 30px;
+    margin-left: 180px;
+    
+    margin-right: 48px;
+}
+
+.creagruppo_button{
+    display: inline;
+    float:left;
+    margin-right: 48px;
+    width: 100px;
+    height: 30px;
+   
+}
+
+.logout_button{
+    float:left;
+    width: 100px;
+    height: 30px;
+    
+}
+.titolo_inviti{
+    color:#b84747;
+    text-align: center;
+    font-size: 30px;
+    width: 500px;
+    padding-left: 300px;
+    
+}
+
+.menu_button{
+    display: block;
+    width: 100%;
+    height: 75px;
+    margin-bottom: 40px;
+    background-color:#9F6F48;
+
+}
+
+.inviti h1{
+    text-align: center;
+    color:#b84747;
+}
+
+.creagruppo_button input{
+    width: 150px;
+    height: 75px;
+    background-color:#9F6F48;
+
+    border-color:gray;
+    color: white;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+}
+
+.gruppo_button input{
+    width: 150px;
+    height: 75px;
+    background-color: #9F6F48;
+    border-color:gray;
+    color: white;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+}
+
+.logout_button input{
+    width: 150px;
+    height: 75px;
+    background-color: #9F6F48;
+    border-color:gray;
+    color: white;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+}
+
+/*Group Servlet*/
+
+.gruppo_blocco{
+    height: 100px;
+}
+
+
+.nome_gruppo{
+    float: left;
+    height: 100px;
+    width: 450px;
+}
+
+.gestisci_gruppo{
+    display: inline;
+    height: 70px;
+    float: left;
+    margin-top: 30px;
+}
+
+.vedi_gruppo{
+    float: left;
+    margin-left: 50px;
+}
+
+.amministra_gruppo{
+    float: left;
+    margin-left: 20px;
+}
+
+/*Vedi Gruppo*/
+
+.inserisci_commento input{
+    width: 80%;
+    height: 100px;
+    float: left
+}
+
+
+
+.sceglifile_button{
+    width: 20%;
+}
+
+
+
+.aggiungi_button input{
+    height: 50px;
+    width: 20%;
+}
+
+.upload_button input{
+    height: 50px;
+    width: 20%;
+    
+}
+
+/*amministra*/
+
+.modifica_amministra input{
+    height: 50px;
+    width: 20%;
+}
+
+.creareport_amministra input{
+    height: 50px;
+    width: 20%;
+}
+
+.invita_amministra input{
+    height: 50px;
+    width: 20%;
+    
+}

@@ -19,7 +19,7 @@
 
         <div class="panel panel-danger">
             <div class="panel-heading">
-                <h3 class="panel-title">Esegui il login</h3>
+                <h3 class="panel-title">ESEGUI IL LOGIN</h3>
             </div>
             <div class="panel-body">
                 <form name="form1" action="LoginServlet" method="POST">

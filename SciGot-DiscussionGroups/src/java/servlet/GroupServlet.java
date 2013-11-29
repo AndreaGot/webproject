@@ -64,24 +64,44 @@ public class GroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+             out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet GroupServlet</title>");
             out.println("</head>");
             out.println("<body>");
+            
+            out.println("<div class='panel panel-primary'>");
+            out.println("<div class='panel-heading'>");
+            out.println("I MIEI GRUPPI");
+            out.println("</div>");
+            out.println("<div class='panel-body'>");
             for (Group g : groups) {
+                out.println("<div class='gruppo_blocco'>");
+                out.println("<div class='nome_gruppo'>");
                 out.println("<h1>" + g.nome + "</h1>");
+                out.println("</div>");
+                out.println("<div class='gestisci_gruppo'>");
+                out.println("<div class='vedi_gruppo'>");
                 out.println("<form action='VediGruppoServlet' method='POST' >"
-                        + "<input type='text' name='view' value='" + g.id + "'>"
+                        + "<input type='hidden' name='view' value='" + g.id + "'>"
                         + "<input type='submit' value='Vedi Gruppo'>"
                         + "</form>");
+                out.println("</div>");
                 if ((session.getAttribute("userid").toString()).equals(g.proprietario.toString())==true) {
+                    out.println("<div class='amministra_gruppo'>");
                     out.println("<form action='AmministraGruppoServlet' method='POST' >"
-                            + "<input type='text' name='id' value='" + g.id + "'>"
+                            + "<input type='hidden' name='id' value='" + g.id + "'>"
                             + "<input type='submit' value='Amministra'>"
                             + "</form>");
+                    out.println("</div>");
                 }
+                out.println("</div>");
+                out.println("</div>");
                 
             }
-            out.println("<h1>I gruppi sono stati caricati correttamente at " + request.getContextPath() + "</h1>");
+            
+            out.println("</div>");
+            out.println("</div>");
+            
             
 
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
