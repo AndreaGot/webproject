@@ -5748,7 +5748,7 @@ a.list-group-item.active:focus .list-group-item-text {
   border-bottom: 1px solid transparent;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  margin-bottom: 30px;
+  
 }
 
 .panel-heading > .dropdown .dropdown-toggle {
@@ -5758,8 +5758,10 @@ a.list-group-item.active:focus .list-group-item-text {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 25px;
   text-align: center;
+  color:white;
+  
 }
 
 .panel-title > a {
@@ -5823,7 +5825,7 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 
 .panel-primary {
-  border-color: #428bca;
+  border-color: rgb(172, 144, 187);
   width: 100%;
   height: 100%;
   margin-top: 5%;
@@ -5831,8 +5833,10 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel-primary > .panel-heading {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: rgb(172, 144, 187);
+  border-color: rgb(172, 144, 187);
+  text-align: center;
+  font-size: 30px;
 }
 
 .panel-primary > .panel-heading + .panel-collapse .panel-body {
@@ -5895,6 +5899,7 @@ a.list-group-item.active:focus .list-group-item-text {
   border-color:gray;
   box-shadow: 10px 10px 5px #C2C2C2;
   margin-left: 30%;
+  width: 45%;
 }
 
 .panel-danger > .panel-heading {
@@ -5906,6 +5911,8 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel-danger > .panel-heading + .panel-collapse .panel-body {
   border-top-color: #ebccd1;
+    background-color: red;
+
 }
 
 .panel-danger > .panel-heading > .dropdown .caret {
@@ -5914,6 +5921,7 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel-danger > .panel-footer + .panel-collapse .panel-body {
   border-bottom-color: #ebccd1;
+  
 }
 
 .panel-info {
@@ -7125,6 +7133,7 @@ td.visible-print {
 #username_icon{
     float:left;
     margin-right: 10px;
+    margin-left: 17.5%;
 }
 
 
@@ -7138,31 +7147,55 @@ td.visible-print {
 #password_icon{
     float:left;
     margin-right: 10px;
-    
+    margin-left: 17.5%;
 }
 
-
+#username_textbox {
+    margin-top:30px;
+}
 
 .submit_button input{
-    width: 100px;
-     background-color: #C9FFD8;
+     height: 30px;
+     width: 155px;
+     background-color: white;
      margin-top: 10px;
-     color:#588D4E;
+     color:black;
+     margin-left: 25%;
+     
 }
 .message{
     color:#b84747;
+}
+
+.login-body{
+    height: 100%;
+    background: rgb(177,139,196); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, rgba(177,139,196,1) 11%, rgba(174,131,196,1) 31%, rgba(168,113,196,1) 43%, rgba(147,62,193,1) 76%, rgba(130,0,196,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(11%,rgba(177,139,196,1)), color-stop(31%,rgba(174,131,196,1)), color-stop(43%,rgba(168,113,196,1)), color-stop(76%,rgba(147,62,193,1)), color-stop(100%,rgba(130,0,196,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(177,139,196,1) 11%,rgba(174,131,196,1) 31%,rgba(168,113,196,1) 43%,rgba(147,62,193,1) 76%,rgba(130,0,196,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgba(177,139,196,1) 11%,rgba(174,131,196,1) 31%,rgba(168,113,196,1) 43%,rgba(147,62,193,1) 76%,rgba(130,0,196,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgba(177,139,196,1) 11%,rgba(174,131,196,1) 31%,rgba(168,113,196,1) 43%,rgba(147,62,193,1) 76%,rgba(130,0,196,1) 100%); /* IE10+ */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b18bc4', endColorstr='#8200c4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 
 /*home*/
 
 .saluti{
-    background-color: #9F6F48;
+    background: rgb(130,0,196); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(130,0,196,1) 0%, rgba(147,62,193,1) 35%, rgba(168,113,196,1) 68%, rgba(174,131,196,1) 80%, rgba(177,139,196,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(130,0,196,1)), color-stop(35%,rgba(147,62,193,1)), color-stop(68%,rgba(168,113,196,1)), color-stop(80%,rgba(174,131,196,1)), color-stop(100%,rgba(177,139,196,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* IE10+ */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8200c4', endColorstr='#b18bc4',GradientType=0 ); /* IE6-9 */
     display:block;
     padding-top: 20px;
     text-align: center;
     border-bottom-color: transparent;
-    border-style: solid;
+    
     border-width: 1px;
     border-right-color: transparent;
     border-left-color: transparent;
@@ -7267,7 +7300,7 @@ td.visible-print {
     width: 100%;
     height: 75px;
     margin-bottom: 40px;
-    background-color:#9F6F48;
+    background-color:rgb(172, 144, 187);
 
 }
 
@@ -7279,9 +7312,9 @@ td.visible-print {
 .creagruppo_button input{
     width: 150px;
     height: 75px;
-    background-color:#9F6F48;
+    background-color:rgb(172, 144, 187);
 
-    border-color:gray;
+    border-color:white;
     color: white;
     border-bottom-color: transparent;
     border-top-color: transparent;
@@ -7290,8 +7323,8 @@ td.visible-print {
 .gruppo_button input{
     width: 150px;
     height: 75px;
-    background-color: #9F6F48;
-    border-color:gray;
+    background-color: rgb(172, 144, 187);
+    border-color:white;
     color: white;
     border-bottom-color: transparent;
     border-top-color: transparent;
@@ -7300,8 +7333,8 @@ td.visible-print {
 .logout_button input{
     width: 150px;
     height: 75px;
-    background-color: #9F6F48;
-    border-color:gray;
+    background-color: rgb(172, 144, 187);
+    border-color:white;
     color: white;
     border-bottom-color: transparent;
     border-top-color: transparent;

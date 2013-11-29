@@ -77,7 +77,7 @@ public class GroupServlet extends HttpServlet {
             for (Group g : groups) {
                 out.println("<div class='gruppo_blocco'>");
                 out.println("<div class='nome_gruppo'>");
-                out.println("<h1>" + g.nome + "</h1>");
+                out.println("<h3>" + g.nome + "</h3>");
                 out.println("</div>");
                 out.println("<div class='gestisci_gruppo'>");
                 out.println("<div class='vedi_gruppo'>");

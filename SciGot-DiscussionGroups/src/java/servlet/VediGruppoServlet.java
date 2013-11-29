@@ -69,6 +69,8 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<title>Servlet VediGruppoServlet</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class='content'>");
+            
             out.println("<table class='table table-striped'>");
 
             out.println("<thead>");
@@ -134,7 +136,7 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
             out.println("</form>");
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
-
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         } finally {
