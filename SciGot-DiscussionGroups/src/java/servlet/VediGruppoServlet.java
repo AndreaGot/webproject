@@ -36,8 +36,9 @@ public class VediGruppoServlet extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -69,8 +70,12 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<title>Servlet VediGruppoServlet</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div>");
+            out.println("<div class='panel panel-default' id='TitoloGruppo'>");
+            out.println("NomeGruppo");
+            out.println("</div>");
             out.println("<div class='content'>");
-            
+
             out.println("<table class='table table-striped'>");
 
             out.println("<thead>");
@@ -104,10 +109,10 @@ public class VediGruppoServlet extends HttpServlet {
             }
             out.println("</tbody>");
             out.println("</table>");
-           
-            
+
+
             out.println("<form action='InserisciPostServlet' method='POST'>");
-            
+
             out.println("<div class='inserisci_commento'>");
             out.println("<input type='text' name='contenuto'   value='Scrivi il tuo commento' />");
             out.println("</div>");
@@ -117,7 +122,7 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<input type='hidden' name='passaID' value='" + request.getParameter("view") + "'>");
             out.println("</form>");
 
-            
+
 
             session.setAttribute("idgruppo", request.getParameter("view"));
 
@@ -125,12 +130,14 @@ public class VediGruppoServlet extends HttpServlet {
             out.println("<div class='upload_button'>");
             out.println("<input type='submit' value='Upload'>");
             out.println("</div>");
-            
+
             out.println("<div class='sceglifile_button'>");
             out.println("<input type='file' name='file'>");
             out.println("</div>");
-            
+
+
             out.println("</form>");
+            out.println("</div>");
 
             out.println("<form action='GroupServlet' method = 'POST'>");
             out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
@@ -146,7 +153,8 @@ public class VediGruppoServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -160,7 +168,8 @@ public class VediGruppoServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

@@ -1703,7 +1703,7 @@ th {
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-    background-color: #f9f9f9;
+    background-color: #adadad;
 }
 
 .table-hover > tbody > tr:hover > td,
@@ -1734,7 +1734,7 @@ table th[class*="col-"] {
 .table > thead > tr.active > th,
 .table > tbody > tr.active > th,
 .table > tfoot > tr.active > th {
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5;*/
 }
 
 .table > thead > tr > td.success,
@@ -5395,38 +5395,38 @@ a.thumbnail.active {
 
 @-webkit-keyframes progress-bar-stripes {
     from {
-        background-position: 40px 0;
-    }
-    to {
-        background-position: 0 0;
-    }
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
 }
 
 @-moz-keyframes progress-bar-stripes {
     from {
-        background-position: 40px 0;
-    }
-    to {
-        background-position: 0 0;
-    }
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
 }
 
 @-o-keyframes progress-bar-stripes {
     from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: 40px 0;
-    }
+    background-position: 0 0;
+}
+to {
+    background-position: 40px 0;
+}
 }
 
 @keyframes progress-bar-stripes {
     from {
-        background-position: 40px 0;
-    }
-    to {
-        background-position: 0 0;
-    }
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
 }
 
 .progress {
@@ -5833,7 +5833,13 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel-primary > .panel-heading {
     color: #ffffff;
-    background-color: rgb(172, 144, 187);
+    background: rgb(130,0,196); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(130,0,196,1) 0%, rgba(147,62,193,1) 35%, rgba(168,113,196,1) 68%, rgba(174,131,196,1) 80%, rgba(177,139,196,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(130,0,196,1)), color-stop(35%,rgba(147,62,193,1)), color-stop(68%,rgba(168,113,196,1)), color-stop(80%,rgba(174,131,196,1)), color-stop(100%,rgba(177,139,196,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* IE10+ */
+
     border-color: rgb(172, 144, 187);
     text-align: center;
     font-size: 30px;
@@ -7165,7 +7171,8 @@ td.visible-print {
 
 }
 .message{
-    color:#b84747;
+    color: #ffffff;
+    text-align: center;
 }
 
 .login-body{
@@ -7248,6 +7255,8 @@ td.visible-print {
 }
 
 .rifiuta_invito input{
+
+
     width: 150px;
     height: 50px;
     background-color: rgb(172, 144, 187);
@@ -7290,8 +7299,8 @@ td.visible-print {
     color:rgb(172, 144, 187);
     text-align: center;
     font-size: 30px;
-    width: 500px;
-    padding-left: 300px;
+    width: 100%;
+    padding-left: 0;
 
 }
 
@@ -7314,9 +7323,11 @@ td.visible-print {
     height: 50px;
     background-color:rgb(172, 144, 187);
 
-    border-color:gray;
+    border-color:white;
     color: white;
     border-bottom-color: transparent;
+
+
 
 }
 
@@ -7324,7 +7335,7 @@ td.visible-print {
     width: 150px;
     height: 50px;
     background-color: rgb(172, 144, 187);
-    border-color:gray;
+    border-color:white;
     color: white;
     border-bottom-color: transparent;
 
@@ -7338,7 +7349,7 @@ td.visible-print {
     width: 150px;
     height: 50px;
     background-color: rgb(172, 144, 187);
-    border-color:gray;
+    border-color:white;
     color: white;
     border-bottom-color: transparent;
 
@@ -7397,7 +7408,7 @@ td.visible-print {
     height: 100px;
     float: left;
     margin-bottom: 20px;
-    
+
 }
 
 
@@ -7444,5 +7455,37 @@ td.visible-print {
     height: 50px;
     width: 20%;
     background-color: rgb(172, 144, 187);
+
+}
+
+#TitoloGruppo
+{
+
+    width: 100%;
+    margin-top: 0; 
+
+    background: rgb(130,0,196); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(130,0,196,1) 0%, rgba(147,62,193,1) 35%, rgba(168,113,196,1) 68%, rgba(174,131,196,1) 80%, rgba(177,139,196,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(130,0,196,1)), color-stop(35%,rgba(147,62,193,1)), color-stop(68%,rgba(168,113,196,1)), color-stop(80%,rgba(174,131,196,1)), color-stop(100%,rgba(177,139,196,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* IE10+ */
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8200c4', endColorstr='#b18bc4',GradientType=0 ); /* IE6-9 */
+    display:block;
+    text-align: center;
+    border-bottom-color: transparent;
+
+    border-width: 1px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+
+    border-color: rgb(172, 144, 187);
+    text-align: center;
+    font-size: 30px;
+    color:white;
+    margin-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 
 }
