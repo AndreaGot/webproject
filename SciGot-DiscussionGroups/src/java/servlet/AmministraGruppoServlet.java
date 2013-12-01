@@ -46,36 +46,46 @@ public class AmministraGruppoServlet extends HttpServlet {
             out.println("<title>Servlet AmministraGruppoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-
-
+            
+            out.println("<div class='panel panel-default' id='TitoloGruppo'>");
+            out.println("NomeGruppo");
+            out.println("</div>");
+            out.println("<div class='content'>");
+            
+            out.println("<div class='bottoni_amministra'>");
             out.println("<form action='CambiaNomeServlet' method='POST'>");
             out.println("<input type='hidden' name='id' value='" + request.getParameter("id") + "'>");
             out.println("<div class='modifica_amministra'>");
-            out.println("<input type='submit' value='Modifica Nome'>");
+            out.println("<input type='submit' value='Modifica nome'>");
             out.println("</div>");
             out.println("</form>");
 
             out.println("<form action='InvitaUtenteServlet' method='POST'>");
             out.println("<input type='hidden' name='id' value='" + request.getParameter("id") + "'>");
             out.println("<div class='invita_amministra'>");
-            out.println("<input type='submit' value='Invita Utente'>");
+            out.println("<input type='submit' value='Invita utente'>");
             out.println("</div>");
             out.println("</form>");
 
             out.println("<form action='CreaReportServlet' method='POST'>");
             out.println("<input type='hidden' name='id' value='" + request.getParameter("id") + "'>");
             out.println("<div class='creareport_amministra'>");
-            out.println("<input type='submit' value='Crea Report'>");
+            out.println("<input type='submit' value='Crea report'>");
             out.println("</div>");
             out.println("</form>");
+            
+            out.println("</div>");
 
-           
-
+           out.println("<div class='bottoni_indietro'>");
+            out.println("<div class='torna_gruppo'>");
             out.println("<form action='GroupServlet' method = 'POST'>");
             out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
             out.println("</form>");
+            out.println("</div>");
+            out.println("<div class='torna_home'>");
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
-
+            out.println("</div>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         } finally {

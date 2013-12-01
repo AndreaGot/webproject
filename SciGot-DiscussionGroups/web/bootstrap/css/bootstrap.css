@@ -316,6 +316,7 @@ body {
     line-height: 1.428571429;
     color: #333333;
     background-color: #ffffff;
+    height: 100%;
 }
 
 input,
@@ -7275,7 +7276,7 @@ td.visible-print {
     float:left;
     width: 100px;
     height: 30px;
-    margin-left: 180px;
+    margin-left: 160px;
 
     margin-right: 48px;
 }
@@ -7443,20 +7444,34 @@ td.visible-print {
     height: 50px;
     width: 20%;
     background-color: rgb(172, 144, 187);
+    margin-left: 60px;
+    float:left;
+    margin-top: 50px;
+    color:white;
 }
 
 .creareport_amministra input{
     height: 50px;
     width: 20%;
     background-color: rgb(172, 144, 187);
+     margin-left: 80px;
+     float:left;
+    margin-top: 50px;
+     color:white;
 }
 
 .invita_amministra input{
     height: 50px;
     width: 20%;
     background-color: rgb(172, 144, 187);
+     margin-left: 80px;
+     float:left;
+    margin-top: 50px;
+    color:white;
 
 }
+
+
 
 #TitoloGruppo
 {
@@ -7489,3 +7504,51 @@ td.visible-print {
     padding-bottom: 30px;
 
 }
+
+.torna_gruppo{
+    margin-left: 60px;
+    float: left;
+}
+
+.torna_gruppo input{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(172, 144, 187);
+    color:white;
+}
+
+.torna_home{
+    margin-left: 30px;
+    float:left;
+}
+
+.bottoni_indietro{
+    margin-top: 150px;
+    width: 400px;
+    
+    
+    
+}
+
+
+
+/*cambia nome Servlet*/
+
+.modifica_textbox input{
+    margin-left: 60px;
+    height: 50px;
+    width: 200px;
+    float: left;
+    margin-top: 50px;
+}
+
+.modifica_bottone input{
+    height: 50px;
+    width: 150px;
+    background-color: rgb(172, 144, 187);
+    color:white;
+    float:left;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+

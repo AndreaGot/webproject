@@ -44,19 +44,30 @@ public class CreaGruppoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>CreaGruppoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + "Crea Gruppo" + "</h1>");
+            
+            out.println("<div class='panel panel-default' id='TitoloGruppo'>");
+            out.println("CREA GRUPPO");
+            out.println("</div>");
+            
+            out.println("<div class='content'>");
+            
             out.println("<form action='RisultatoCreaGruppo' method='POST'>");
-            out.println("Inserire nome del gruppo: "
-                    + "<input type='text' name='creaGruppoTextbox' value=' '>"
-                    + "<input type='submit' value='crea' name='crea' >");
+            out.println("<div class='modifica_textbox'>");
+            out.println("<input type='text' name='creaGruppoTextbox' value='Inserire nome gruppo'>");
+            out.println("</div>");
+            out.println("<div class='modifica_bottone'>");
+            out.println("<input type='submit' value='crea' name='crea' >");
+            out.println("</div>");
+            
             out.println("</form>");
 
 
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
-
+            out.println("</div>");
 
             out.println("</body>");
             out.println("</html>");

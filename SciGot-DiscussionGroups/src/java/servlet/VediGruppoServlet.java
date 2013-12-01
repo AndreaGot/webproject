@@ -69,6 +69,7 @@ public class VediGruppoServlet extends HttpServlet {
             out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet VediGruppoServlet</title>");
             out.println("</head>");
+            
             out.println("<body>");
             out.println("<div>");
             out.println("<div class='panel panel-default' id='TitoloGruppo'>");

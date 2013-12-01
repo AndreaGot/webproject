@@ -18,9 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class CambiaNomeServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -36,23 +35,42 @@ public class CambiaNomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet CambiaNomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
 
+            out.println("<div class='panel panel-default' id='TitoloGruppo'>");
+            out.println("MODIFICA NOME");
+            out.println("</div>");
+
+            out.println("<div class='content'>");
+
             out.println("<form action='RisultatoNomeServlet' method='POST'>");
-            out.println("<input type='text' name='id' value='" + request.getParameter("id") + "'>");
+            out.println("<input type='hidden' name='id' value='" + request.getParameter("id") + "'>");
+
+            out.println("<div class='modifica_textbox'>");
             out.println("<input type='text' name='nome' value='Inserisci il nome'>");
-            out.println("<input type='submit' value='Modifica Nome'>");
+            out.println("</div>");
+
+            out.println("<div class='modifica_bottone'>");
+            out.println("<input type='submit' value='Modifica nome'>");
+            out.println("</div>");
+
             out.println("</form>");
 
-            out.println("<h1>Servlet CambiaNomeServlet at " + request.getContextPath() + "</h1>");
-
+            out.println("<div class='bottoni_indietro'>");
+            out.println("<div class='torna_gruppo'>");
             out.println("<form action='GroupServlet' method = 'POST'>");
             out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
             out.println("</form>");
-            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            out.println("</div>");
+            out.println("<div class='torna_home'>");
 
+            out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -62,8 +80,7 @@ public class CambiaNomeServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -77,8 +94,7 @@ public class CambiaNomeServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
