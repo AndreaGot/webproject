@@ -52,6 +52,7 @@ public class CreaReportServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String posts = "";
+        String data = "";
         
         try {
             user = manager.trovaUtente(request);
@@ -70,16 +71,25 @@ public class CreaReportServlet extends HttpServlet {
             document.open();
 
             // Code 3
-            PdfPTable table = new PdfPTable(1);
+            PdfPTable table = new PdfPTable(3);
+            table.addCell("Nome utente");
+            table.addCell("Post");
+            table.addCell("Ultimo post");
+            table.addCell(" ");
+            table.addCell(" ");
+            table.addCell(" ");
             for (User u : user) {
                 table.addCell(u.getUserName());
                 try {
                     posts = manager.numeroPost(request, u.getId());
+                    data = manager.dataPost(request, u.getId());
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(CreaReportServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 table.addCell(posts);
+                table.addCell(data);
             }
 
             // Code 4

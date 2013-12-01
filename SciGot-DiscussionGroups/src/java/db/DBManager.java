@@ -529,4 +529,38 @@ public class DBManager implements Serializable {
 
     }
     
+    public String dataPost(HttpServletRequest request,String id) throws SQLException {
+
+        HttpSession session = request.getSession(false);
+        
+        stm = connect.prepareStatement("SELECT `Data` FROM `post` WHERE `Id_autore` = ? and `Id_gruppo` =? ORDER BY `Data` DESC");
+        try {
+            stm.setString(1, id);
+            stm.setString(2, session.getAttribute("idgruppo").toString());
+
+            ResultSet rs = stm.executeQuery();
+
+            try {
+                if (rs.next()) {
+
+                    return rs.getString("Data");
+                } else {
+                    return null;
+                }
+            } finally {
+                // ricordarsi SEMPRE di chiudere i ResultSet in un blocco finally 
+                rs.close();
+            }
+
+
+        } catch (Exception e) {
+            return null;
+        } finally {
+            // ricordarsi SEMPRE di chiudere i PreparedStatement in un blocco finally 
+            stm.close();
+        }
+
+    }
+
+    
 }
