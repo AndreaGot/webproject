@@ -97,8 +97,17 @@ public class UploadFileServlet extends HttpServlet {
                     out.println("f.length(): " + f.length());
                 }
                 
+                
+                String indirizzo;
+                String primaparte;
+                String fileintero;
+                
+                primaparte = getServletContext().getRealPath("/");
+                fileintero = f.toString();
+                indirizzo = fileintero.substring(primaparte.length()-1);
+                
                 try {
-                    manager.inserisciFile(request, f.toString(),f.getName());
+                    manager.inserisciFile(request, indirizzo,f.getName());
                 } catch (SQLException ex) {
                     Logger.getLogger(UploadFileServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

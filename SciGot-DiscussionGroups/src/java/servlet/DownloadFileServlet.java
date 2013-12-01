@@ -34,8 +34,8 @@ public class DownloadFileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String fileName = request.getParameter("link").toString();
-        
+        String fileName = getServletContext().getRealPath("/") + request.getParameter("link").toString();
+       
         File file = new File(fileName);
 
         if (!file.exists()) {

@@ -99,7 +99,7 @@ public class VediGruppoServlet extends HttpServlet {
                 out.println("<td>");
                 out.println(p.data);
                 out.println("</td>");
-                out.println("</tr");
+                out.println("</tr>");
 
             }
             out.println("</tbody>");
