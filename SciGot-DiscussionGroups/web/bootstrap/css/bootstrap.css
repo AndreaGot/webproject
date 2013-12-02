@@ -7351,9 +7351,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004799', end
 
 }
 
-.gruppo_button input:hover{
-    background-color:  #D7B8E0;
-}
+
 
 .logout_button input{
     width: 150px;

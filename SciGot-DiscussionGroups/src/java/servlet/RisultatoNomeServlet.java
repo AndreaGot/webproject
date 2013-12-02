@@ -58,14 +58,31 @@ public class RisultatoNomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet RisultatoNomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
 
             if (fatto) {
-                out.println("<h1> NOME CAMBIATO IN " + request.getParameter("nome") + "</h1>");
+                out.println("<div class='alert alert-info'>");
+                out.println("<strong>");
+                out.println("Ben fatto!");
+                out.println("</strong>");
+
+                 out.println(" Nome cambiato in: " + request.getParameter("nome"));
+                out.println("</div>");
+                
+               
             } else {
-                out.println("<h1> NOME NON CAMBIATO</h1>");
+                
+                out.println("<div class='alert alert-danger'>");
+                out.println("<strong>");
+                out.println(" Attenzione! ");
+                out.println("</strong>");
+                out.println("Controlla che non sia già esistente :( ");
+                out.println("</div>");
+                
+                out.println("Nome non cambiato");
             }
 
             out.println("<form action='GroupServlet' method = 'POST'>");
