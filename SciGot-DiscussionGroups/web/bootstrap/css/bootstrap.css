@@ -7602,4 +7602,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004799', end
 
 
 
-
+.contenuto{
+    width: 500px;
+    word-break:  break-all;
+    
+}
