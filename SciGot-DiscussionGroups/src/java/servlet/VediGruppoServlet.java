@@ -97,9 +97,11 @@ public class VediGruppoServlet extends HttpServlet {
                 out.println("<td>");
                 out.println(p.Autore);
                 out.println("</td>");
-                out.println("<td>");
+                
+                out.println("<td class='contenuto'>");
                 out.println(p.contenuto);
                 out.println("</td>");
+                
                 out.println("<td>");
                 out.println(p.data);
                 out.println("</td>");
