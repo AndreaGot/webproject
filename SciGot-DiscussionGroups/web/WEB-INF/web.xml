@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>filters.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/AmministraGruppoServlet</url-pattern>
+        <url-pattern>/CambiaNomeServlet</url-pattern>
+        <url-pattern>/CreaGruppoServlet</url-pattern>
+        <url-pattern>/DownloadFileServlet</url-pattern>
+        <url-pattern>/GroupServlet</url-pattern>
+        <url-pattern>/InserisciPostServlet</url-pattern>
+        <url-pattern>/InvitaUtenteServlet</url-pattern>
+        <url-pattern>/InvitoRispostaServlet</url-pattern>
+        <url-pattern>/LogoutServlet</url-pattern>
+        <url-pattern>/RisultatoCreaGruppo</url-pattern>
+        <url-pattern>/RisultatoInvitoServlet</url-pattern>
+        <url-pattern>/RisultatoNomeServlet</url-pattern>
+        <url-pattern>/UploadFileServlet</url-pattern>
+        <url-pattern>/VediGruppoServlet</url-pattern>
+        
+    </filter-mapping>
     <listener>
         <description>listener</description>
         <listener-class>listeners.WebappContextListener</listener-class>
@@ -156,18 +178,18 @@
             30
         </session-timeout>
     </session-config>
-<init-param>
+    <init-param>
         <param-name>
 
- uploadDir
+            uploadDir
 
- </param-name>
+        </param-name>
         <param-value>
 
- /tmp
+            /tmp
 
- </param-value>
+        </param-value>
     </init-param>
-=
+    =
     
-    </web-app>
+</web-app>

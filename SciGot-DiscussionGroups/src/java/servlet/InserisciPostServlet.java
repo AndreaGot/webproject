@@ -89,6 +89,8 @@ public class InserisciPostServlet extends HttpServlet {
 
             } else if (array[i].startsWith("http://")) {
                 post = post + " <a href='" + array[i] + "'>" + array[i] + "</a>";
+            } else if (array[i].startsWith("www.")) {
+                post = post + " <a href='http://" + array[i] + "'>" + array[i] + "</a>";
             } else {
                 post = post + " " + array[i];
             }
@@ -117,14 +119,14 @@ public class InserisciPostServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
-            
+
             out.println("<div class='alert alert-info'>");
-                out.println("<strong>");
-                out.println(" Commento inserito con successo!");
-                out.println("</strong>");
-                out.println("</div>");
-            
-            
+            out.println("<strong>");
+            out.println(" Commento inserito con successo!");
+            out.println("</strong>");
+            out.println("</div>");
+
+
             out.println("<div class='tasti_indietro'>");
             out.println("<div class='torna_gruppo'>");
             out.println("<form action='VediGruppoServlet' method='POST' >");
