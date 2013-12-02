@@ -58,23 +58,48 @@ public class RisultatoInvitoServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet RisultatoInvitoServlet</title>");
             out.println("</head>");
             out.println("<body>");
 
             if (fatto) {
-                out.println("<h1> Invito inviato a " + request.getParameter("nome") + " nel gruppo " + request.getParameter("idgruppo") + "</h1>");
+                out.println("<div class='alert alert-info'>");
+                out.println("<strong>");
+                out.println("Ben fatto!");
+                out.println("</strong>");
+
+                out.println(" Invito inviato a " + request.getParameter("nome"));
+                out.println("</div>");
+                
+                
+                
             } else {
-                out.println("<h1> INVITO NON INVIATO. Potrebbe essere già stato inviato in precedenza!</h1>");
+                
+                 out.println("<div class='alert alert-danger'>");
+                out.println("<strong>");
+                out.println(" Invito non inviato! ");
+                out.println("</strong>");
+                  out.println("Controlla che non sia già stato inviato in precedenza!");
+                out.println("</div>");
+                
+                
+               
             }
 
 
+             out.println("<div class='tasti_indietro'>");
+            out.println("<div class='torna_gruppo'>");
             out.println("<form action='GroupServlet' method = 'POST'>");
             out.println("<input type='submit' value='Torna ai tuoi gruppi'>");
             out.println("</form>");
+            out.println("</div>");
+            out.println("<div class='torna_home'>");
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            out.println("</div>");
+            out.println("</div>");
 
-            out.println("<h1>Servlet RisultatoInvitoServlet at " + request.getContextPath() + "</h1>");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {

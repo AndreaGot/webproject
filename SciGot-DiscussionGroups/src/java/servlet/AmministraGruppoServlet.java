@@ -48,7 +48,7 @@ public class AmministraGruppoServlet extends HttpServlet {
             out.println("<body>");
             
             out.println("<div class='panel panel-default' id='TitoloGruppo'>");
-            out.println("NomeGruppo");
+            out.println("AMMINISTRA GRUPPO");
             out.println("</div>");
             out.println("<div class='content'>");
             

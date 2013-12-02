@@ -32,9 +32,8 @@ public class RisultatoCreaGruppo extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -43,14 +42,14 @@ public class RisultatoCreaGruppo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String IDGruppo;
-        
+
         try {
             fatto = manager.inserisciGruppo(request);
             IDGruppo = manager.trovaIdDaGruppo(request);
             fatto2 = manager.inserisciUtente(request, IDGruppo);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(RisultatoCreaGruppo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,26 +61,31 @@ public class RisultatoCreaGruppo extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet RisultatoCreaGruppo</title>");
             out.println("</head>");
             out.println("<body>");
 
             if (fatto && fatto2) {
+                out.println("<div class='alert alert-info'>");
+                out.println("<strong>");
+                out.println("Ben fatto!");
+                out.println("</strong>");
 
-                out.println("<h1>GRUPPO" + request.getParameter("creaGruppoTextbox") + " CREATO </h1>");
-
+                out.println("Gruppo " + request.getParameter("creaGruppoTextbox") + " creato");
+                out.println("</div>");
             } else {
-                out.println(fatto);
-                out.println(fatto2);
                 
-                out.println("<h1> GRUPPO NON CREATO. FORSE ESISTE GIÀ :( </h1>");
-
+                out.println("<div class='alert alert-danger'>");
+                out.println("<strong>");
+                out.println(" Gruppo non creato");
+                out.println("</strong>");
+                out.println("Controlla che non sia già esistente :( ");
+                out.println("</div>");
             }
-            out.println("<h1>Servlet RisultatoCreaGruppo at " + request.getContextPath() + "</h1>");
-            
 
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
-            
+
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -91,8 +95,7 @@ public class RisultatoCreaGruppo extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -106,8 +109,7 @@ public class RisultatoCreaGruppo extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

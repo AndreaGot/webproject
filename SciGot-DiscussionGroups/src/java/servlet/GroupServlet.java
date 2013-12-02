@@ -69,11 +69,12 @@ public class GroupServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            out.println("<div class='panel panel-primary'>");
-            out.println("<div class='panel-heading'>");
+            
+            out.println("<div class='panel panel-default' id='TitoloGruppo'>");
             out.println("I MIEI GRUPPI");
             out.println("</div>");
-            out.println("<div class='panel-body'>");
+            
+            out.println("<div class='content'>");
             for (Group g : groups) {
                 out.println("<div class='gruppo_blocco'>");
                 out.println("<div class='nome_gruppo'>");

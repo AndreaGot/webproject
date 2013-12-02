@@ -83,8 +83,9 @@ public class LoginServlet extends HttpServlet {
             out.println("</head>");
 
             out.println("<body>");
-            out.println("<div class='content'>");
-            out.println("<div class='saluti'>");
+            
+              out.println("<div class='panel panel-default' id='titolohome'>");
+                out.println("<div class='saluti'>");
             out.println("<div id='welcome'>");
             out.println("<h3> Benvenuto  " + session.getAttribute("user") + "." + "</h3>");
             out.println("</div>");
@@ -104,6 +105,11 @@ public class LoginServlet extends HttpServlet {
             }
             
              out.println("</div>");
+            out.println("</div>");
+            
+            
+            out.println("<div class='content'>");
+        
             out.println("<div class='menu_button'>");
             out.println("<div class='gruppo_button'>");
             out.println("<form action='GroupServlet' method = 'POST'>");
@@ -131,7 +137,7 @@ public class LoginServlet extends HttpServlet {
             out.println("</div>");
             if (inviti.size() <= 0) {
                 out.println("<div class='inviti'>");
-                out.println("<h1> Non hai nessun invito in questo momento! </h1>");
+                out.println("<h3> Non hai nessun invito in questo momento! </h3>");
                 out.println("</div>");
             } else {
 

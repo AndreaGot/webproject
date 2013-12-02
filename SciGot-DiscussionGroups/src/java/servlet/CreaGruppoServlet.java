@@ -22,9 +22,8 @@ import javax.servlet.http.HttpSession;
 public class CreaGruppoServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -33,9 +32,6 @@ public class CreaGruppoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
-
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -48,13 +44,13 @@ public class CreaGruppoServlet extends HttpServlet {
             out.println("<title>CreaGruppoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             out.println("<div class='panel panel-default' id='TitoloGruppo'>");
             out.println("CREA GRUPPO");
             out.println("</div>");
-            
+
             out.println("<div class='content'>");
-            
+
             out.println("<form action='RisultatoCreaGruppo' method='POST'>");
             out.println("<div class='modifica_textbox'>");
             out.println("<input type='text' name='creaGruppoTextbox' value='Inserire nome gruppo'>");
@@ -62,13 +58,17 @@ public class CreaGruppoServlet extends HttpServlet {
             out.println("<div class='modifica_bottone'>");
             out.println("<input type='submit' value='crea' name='crea' >");
             out.println("</div>");
-            
+
             out.println("</form>");
 
-
+            
+            out.println("<div class='bottoni_indietro'>");
+            out.println("<div class='torna_home'>");
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
             out.println("</div>");
-
+             out.println("</div>");
+             out.println("</div>");
+             
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -79,8 +79,7 @@ public class CreaGruppoServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -94,8 +93,7 @@ public class CreaGruppoServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -105,7 +103,6 @@ public class CreaGruppoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
         processRequest(request, response);
     }

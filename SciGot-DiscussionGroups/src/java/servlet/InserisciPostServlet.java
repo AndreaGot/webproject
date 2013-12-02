@@ -112,17 +112,30 @@ public class InserisciPostServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
             out.println("<title>Servlet InserisciPostServlet</title>");
             out.println("</head>");
             out.println("<body>");
 
-            out.println("<h1>Servlet InserisciPostServlet at " + request.getContextPath() + "</h1>");
-
+            
+            out.println("<div class='alert alert-info'>");
+                out.println("<strong>");
+                out.println(" Commento inserito con successo!");
+                out.println("</strong>");
+                out.println("</div>");
+            
+            
+            out.println("<div class='tasti_indietro'>");
+            out.println("<div class='torna_gruppo'>");
             out.println("<form action='VediGruppoServlet' method='POST' >");
-            out.println("<input type='text' name='view' value='" + request.getParameter("passaID") + "'>"
-                    + "<input type='submit' value='Torna alla pagina del gruppo'>"
+            out.println("<input type='hidden' name='view' value='" + request.getParameter("passaID") + "'>"
+                    + "<input type='submit' value='Torna al gruppo'>"
                     + "</form>");
+            out.println("</div>");
+            out.println("<div class='torna_home'>");
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
+            out.println("</div>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         } finally {

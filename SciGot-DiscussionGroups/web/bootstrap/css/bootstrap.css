@@ -43,7 +43,7 @@ html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    height: 100%;
+    
 
 
 }
@@ -5356,6 +5356,8 @@ a.thumbnail.active {
     color: #3a87ad;
     background-color: #d9edf7;
     border-color: #bce8f1;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .alert-info hr {
@@ -5384,6 +5386,8 @@ a.thumbnail.active {
     color: #b94a48;
     background-color: #f2dede;
     border-color: #ebccd1;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .alert-danger hr {
@@ -7211,14 +7215,14 @@ td.visible-print {
 }
 
 .content{
-    height: 100%;
+    height: 80%;
 
     border-left-color:  gray;
     border-right-color: gray;
     border-style: solid ;
-    border-bottom-color: transparent;
-    border-top-color: transparent;
-    border-width: 2px;
+    border-bottom-color: gray;
+    border-top-color: gray;
+    border-width: 1px;
     box-shadow: 10px 0px 5px #C2C2C2;
 }
 
@@ -7276,9 +7280,9 @@ td.visible-print {
     float:left;
     width: 100px;
     height: 30px;
-    margin-left: 160px;
+    margin-left: 120px;
 
-    margin-right: 48px;
+    margin-right: 90px;
 }
 
 .creagruppo_button{
@@ -7287,7 +7291,7 @@ td.visible-print {
     margin-right: 48px;
     width: 100px;
     height: 30px;
-
+     margin-right: 90px;
 }
 
 .logout_button{
@@ -7310,13 +7314,13 @@ td.visible-print {
     width: 100%;
     height: 50px;
     margin-bottom: 40px;
-    background-color:rgb(172, 144, 187);
+    margin-top: 30px;
 
 }
 
-.inviti h1{
+.inviti h3{
     text-align: center;
-    color:#b84747;
+    color:black;
 }
 
 .creagruppo_button input{
@@ -7327,7 +7331,7 @@ td.visible-print {
     border-color:white;
     color: white;
     border-bottom-color: transparent;
-
+   
 
 
 }
@@ -7339,6 +7343,7 @@ td.visible-print {
     border-color:white;
     color: white;
     border-bottom-color: transparent;
+   
 
 }
 
@@ -7360,6 +7365,8 @@ td.visible-print {
 
 .gruppo_blocco{
     height: 100px;
+    margin-left: 30px;
+    margin-top: 20px;
 }
 
 
@@ -7408,15 +7415,17 @@ td.visible-print {
     width: 80%;
     height: 100px;
     float: left;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
 }
 
 
 
-.sceglifile_button input{
-
+.sceglifile{
+    margin-bottom: 30px;
 }
+
+
 
 
 
@@ -7505,6 +7514,33 @@ td.visible-print {
 
 }
 
+#titolohome{
+     width: 100%;
+    margin-top: 0; 
+
+    background: rgb(130,0,196); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(130,0,196,1) 0%, rgba(147,62,193,1) 35%, rgba(168,113,196,1) 68%, rgba(174,131,196,1) 80%, rgba(177,139,196,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(130,0,196,1)), color-stop(35%,rgba(147,62,193,1)), color-stop(68%,rgba(168,113,196,1)), color-stop(80%,rgba(174,131,196,1)), color-stop(100%,rgba(177,139,196,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(130,0,196,1) 0%,rgba(147,62,193,1) 35%,rgba(168,113,196,1) 68%,rgba(174,131,196,1) 80%,rgba(177,139,196,1) 100%); /* IE10+ */
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8200c4', endColorstr='#b18bc4',GradientType=0 ); /* IE6-9 */
+    display:block;
+    text-align: center;
+    border-bottom-color: transparent;
+
+    border-width: 1px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+
+    border-color: rgb(172, 144, 187);
+    text-align: center;
+    font-size: 30px;
+    color:white;
+    margin-bottom: 20px;
+}
+
 .torna_gruppo{
     margin-left: 60px;
     float: left;
@@ -7515,21 +7551,30 @@ td.visible-print {
     height: 30px;
     background-color: rgb(172, 144, 187);
     color:white;
+    margin-top: 30px;
 }
 
 .torna_home{
     margin-left: 30px;
     float:left;
+     margin-top: 40px;
 }
 
 .bottoni_indietro{
     margin-top: 150px;
     width: 400px;
-    
-    
+      
+}
+
+.tasti_indietro{
+    width: 400px;
     
 }
 
+.tasti_indietro .torna_gruppo{
+    margin-left: 0px;
+    
+}
 
 
 /*cambia nome Servlet*/

@@ -37,9 +37,8 @@ public class InvitoRispostaServlet extends HttpServlet {
     // Effettuare la chiamata a una query che setta semplicemente il flag della richiesta come 0, rifiutando la proposta.
     // In seguito la richiesta non comparirà più perchè è stata presa una decisione
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -70,14 +69,10 @@ public class InvitoRispostaServlet extends HttpServlet {
 
                 manager.settaInvito(request, idgruppo, "2");
 
-
             } catch (SQLException ex) {
                 Logger.getLogger(InvitoRispostaServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-
-
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -86,21 +81,34 @@ public class InvitoRispostaServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InvitoAccettatoServlet</title>");
+            out.println(" <link href='bootstrap/css/bootstrap.css' rel='stylesheet' type='text/css' >");
+            out.println("<title>Servlet InvitoRispostaServlet</title>");
             out.println("</head>");
             out.println("<body>");
             if (accettato) {
-                out.println("<h1> INVITO ACCETTATO! BENVENUTO NEL GRUPPO!</h1>");
+                out.println("<div class='alert alert-info'>");
+                out.println("<strong>");
+                out.println(" Invito accettato!");
+                out.println("</strong>");
+
+                out.println("Benvenuto nel gruppo!");
+                out.println("</div>");
+
             } else {
-                out.println("<h1> INVITO RIFIUTATO</h1>");
+
+                out.println("<div class='alert alert-danger'>");
+                out.println("<strong>");
+                out.println("Invito rifiutato");
+                out.println("</strong>");
+
+                out.println("</div>");
+
             }
-            
-            out.println("<form action='InvitiServlet' method='POST'>");
-            out.println("<input type='submit' value='Ritorna agli inviti'>");
-            out.println("</form>");
-            
+
+         
+
             out.println("<a href='LoginServlet'> Torna alla Home </a>");
-            
+
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -110,8 +118,7 @@ public class InvitoRispostaServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -125,8 +132,7 @@ public class InvitoRispostaServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -136,7 +142,6 @@ public class InvitoRispostaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
         processRequest(request, response);
     }
